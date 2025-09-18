@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>International — Trip Comfort Holidays</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('hidden')}
+  </script>
+  
+  <style>
+          .bg-white:hover {
+          transform: scale(1.05);
+		  }
+		  
+    .bg-white{
+	         transition: transform 0.3s;
+			 box-shadow: 0.3s;
+	}
+  </style>
+  
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+<!-- Header -->
+<header class="head" bg-white sticky top-0 z-50 border-b>
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="index.html" class="text-xl md:text-2xl font-extrabold text-yellow-500">☀️ Trip Comfort Holidays</a>
+    <nav class="hidden md:flex text-sm font-medium gap-6">
+      <a href="index.html" class="hover:text-yellow-600">Home</a>
+      <a href="all-india-packages.html" class="hover:text-yellow-600">All-India Packages</a>
+      <a href="international.html" class="hover:text-yellow-600 text-yellow-600">International</a>
+      <a href="#themes" class="hover:text-yellow-600">Themes</a>
+      <a href="gallery.html" class="hover:text-yellow-600">Gallery</a>
+      <a href="contact.html" class="hover:text-yellow-600">Contact</a>
+    </nav>
+    <button class="md:hidden text-2xl" onclick="toggleMenu()">☰</button>
+  </div>
+  <div id="mobileMenu" class="md:hidden hidden border-t px-4 py-3 grid gap-2 text-sm">
+    <a href="index.html">Home</a>
+    <a href="all-india-packages.html">All-India Packages</a>
+    <a href="international.html" class="text-yellow-600">International</a>
+    <a href="#themes">Themes</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="max-w-7xl mx-auto px-4 py-10">
+  <h1 class="text-3xl font-bold mb-6">🌍 International Packages</h1>
+  <p class="mb-8 text-gray-600">Explore top international destinations with Trip Comfort Holidays. Handpicked packages at best prices.</p>
+  
+  <!-- Grid of Packages -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- Thailand -->
+    <div class="bg-white rounded shadow overflow-hidden">
+      <img src="image/thailand.jpg" alt="Thailand" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h2 class="font-bold text-lg mb-2">Thailand Getaway</h2>
+        <p class="text-sm mb-2">5 Days / 4 Nights • Bangkok, Pattaya, Phuket</p>
+        <p class="text-yellow-600 font-semibold">₹39,999</p>
+      </div>
+    </div>
+
+    <!-- Dubai -->
+    <div class="bg-white rounded shadow overflow-hidden">
+      <img src="image/dubai.jpg" alt="Dubai" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h2 class="font-bold text-lg mb-2">Dubai Extravaganza</h2>
+        <p class="text-sm mb-2">6 Days / 5 Nights • Burj Khalifa, Desert Safari, Dubai Mall</p>
+        <p class="text-yellow-600 font-semibold">₹54,999</p>
+      </div>
+    </div>
+
+    <!-- Singapore -->
+    <div class="bg-white rounded shadow overflow-hidden">
+      <img src="image/singapore.jpg" alt="Singapore" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h2 class="font-bold text-lg mb-2">Singapore & Sentosa</h2>
+        <p class="text-sm mb-2">5 Days / 4 Nights • Marina Bay, Universal Studios, Sentosa Island</p>
+        <p class="text-yellow-600 font-semibold">₹49,999</p>
+      </div>
+    </div>
+
+    <!-- Bali -->
+    <div class="bg-white rounded shadow overflow-hidden">
+      <img src="image/bali.jpg" alt="Bali" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h2 class="font-bold text-lg mb-2">Bali Romantic Escape</h2>
+        <p class="text-sm mb-2">6 Days / 5 Nights • Ubud, Kuta, Nusa Dua</p>
+        <p class="text-yellow-600 font-semibold">₹44,999</p>
+      </div>
+    </div>
+
+    <!-- Maldives -->
+    <div class="bg-white rounded shadow overflow-hidden">
+      <img src="image/maldives.jpg" alt="Maldives" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h2 class="font-bold text-lg mb-2">Maldives Luxury</h2>
+        <p class="text-sm mb-2">4 Days / 3 Nights • Overwater Villas, Snorkeling, Spa</p>
+        <p class="text-yellow-600 font-semibold">₹69,999</p>
+      </div>
+    </div>
+
+    <!-- Europe -->
+    <div class="bg-white rounded shadow overflow-hidden">
+      <img src="image/europe.jpg" alt="Europe" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h2 class="font-bold text-lg mb-2">Europe Highlights</h2>
+        <p class="text-sm mb-2">10 Days / 9 Nights • Paris, Switzerland, Italy</p>
+        <p class="text-yellow-600 font-semibold">₹1,49,999</p>
+      </div>
+    </div>
+
+    <!-- USA -->
+    <div class="bg-white rounded shadow overflow-hidden">
+      <img src="image/USA.jpg" alt="USA" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h2 class="font-bold text-lg mb-2">USA East Coast</h2>
+        <p class="text-sm mb-2">8 Days / 7 Nights • New York, Washington DC, Niagara Falls</p>
+        <p class="text-yellow-600 font-semibold">₹1,79,999</p>
+      </div>
+    </div>
+
+    <!-- Australia -->
+    <div class="bg-white rounded shadow overflow-hidden">
+      <img src="image/australia.jpg" alt="Australia" class="w-full h-48 object-cover">
+      <div class="p-4">
+        <h2 class="font-bold text-lg mb-2">Australia Explorer</h2>
+        <p class="text-sm mb-2">9 Days / 8 Nights • Sydney, Melbourne, Gold Coast</p>
+        <p class="text-yellow-600 font-semibold">₹1,59,999</p>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-200">
+  <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8">
+    <div>
+      <p class="text-xl font-extrabold text-yellow-500">☀️ Trip Comfort Holidays</p>
+      <p class="text-sm mt-2">Himachal specialists based in Sundernagar & Mandi. Fully customizable trips.</p>
+    </div>
+    <div>
+      <h4 class="font-semibold mb-2">Quick Links</h4>
+      <ul class="text-sm space-y-1">
+        <li><a href="index.html" class="hover:underline">Home</a></li>
+        <li><a href="all-india-packages.html" class="hover:underline">Packages</a></li>
+        <li><a href="other-countries.html" class="hover:underline">Other Countries</a></li>
+        <li><a href="#team" class="hover:underline">Team</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="font-semibold mb-2">Themes</h4>
+      <ul class="text-sm space-y-1">
+        <li>Honeymoon</li>
+        <li>Family</li>
+        <li>Adventure</li>
+        <li>Weekend</li>
+      </ul>
+    </div>
+  </div>
+  <div class="text-center text-xs py-4 border-t border-gray-800">© 2025 Trip Comfort Holidays • All rights reserved</div>
+</footer>
+
+</body>
+</html>

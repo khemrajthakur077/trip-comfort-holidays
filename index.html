@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trip Comfort Holidays — Himachal Experts</title>
+  <meta name="description" content="Sunshine Tour & Travel — Himachal Pradesh specialists based in Sundernagar & Mandi. Customized honeymoon, family and adventure packages with local support."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://images.unsplash.com"/>
+  <style>
+    /* simple carousel */
+    .snap-x {scroll-snap-type:x mandatory}
+    .snap-start{scroll-snap-align:start}
+
+    h4.font-semibold.mb-2 {
+    display: contents;
+}
+  </style>
+  <script>
+    function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('hidden')}
+    function toggleFAQ(id){const el=document.getElementById(id); el.classList.toggle('hidden')}
+  </script>
+  <!-- LocalBusiness Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "Sunshine Tour & Travel",
+    "areaServed": "Himachal Pradesh, India",
+    "address": {"@type": "PostalAddress","addressLocality": "Sundernagar","addressRegion": "Mandi","addressCountry":"IN"},
+    "telephone": "+91-9876543210",
+    "url": "https://example.com"
+  }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Topbar -->
+  <div class="bg-gray-900 text-gray-100 text-xs">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
+      <div class="space-x-4 flex items-center">
+        <span>📞 1800-000-SUN (786)</span>
+        <a href="#offers" class="hidden sm:inline underline">Offers</a>
+        <span class="hidden md:inline">Based in Sundernagar • Mandi</span>
+      </div>
+      <div class="space-x-4">
+        <a href="#" class="underline">Login</a>
+        <a href="#planner" class="underline">Plan My Holiday</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-white sticky top-0 z-50 border-b">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#home" class="text-xl md:text-2xl font-extrabold text-yellow-500">☀️ Trip Comfort Holidays</a>
+      <nav class="hidden md:flex text-sm font-medium gap-6">
+        <a href="#destinations" class="hover:text-yellow-600">Destinations</a>
+		<a href="all-india-packages.html" class="hover:text-yellow-600">All-India Packages</a>
+       <a href="international.html" class="hover:text-yellow-600">International</a>
+        <a href="#themes" class="hover:text-yellow-600">Themes</a>
+        <a href="gallery.html" class="hover:text-yellow-600">Gallery</a>
+        <a href="contact.html" class="hover:text-yellow-600">Contact</a>
+      </nav>
+      <button class="md:hidden text-2xl" onclick="toggleMenu()">☰</button>
+    </div>
+    <div id="mobileMenu" class="md:hidden hidden border-t">
+      <div class="px-4 py-3 grid gap-2 text-sm">
+        <a href="#destinations">Destinations</a>
+        <a href="all-india-packages.html">All-India Packages</a>
+		 <a href="international.html">International</a>
+        <a href="#themes">Themes</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO with lead form -->
+  <section id="home" class="relative">
+    <div class="h-[70vh] md:h-[78vh] bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1521295121783-8a321d551ad2?q=80&auto=format&fit=crop&w=1600');"></div>
+    <div class="max-w-7xl mx-auto -mt-40 md:-mt-52 px-4 relative">
+      <div class="bg-white rounded-2xl shadow-2xl p-4 md:p-6 grid md:grid-cols-5 gap-3 md:gap-4">
+        <div class="md:col-span-5"><h1 class="text-xl md:text-2xl font-bold">Customize & Book — Amazing Himachal Packages</h1><p class="text-sm text-gray-600">Couples ❤️ • Family 👨‍👩‍👧‍👦 • Adventure 🏔️ | Local support from Sundernagar & Mandi</p></div>
+        <input class="border rounded-lg p-3 text-sm" placeholder="From City (Sundernagar, Mandi...)" />
+        <input class="border rounded-lg p-3 text-sm" placeholder="Destination (Manali, Dharamshala...)" />
+        <input type="date" class="border rounded-lg p-3 text-sm" />
+        <select class="border rounded-lg p-3 text-sm"><option>4-6 Days</option><option>2-3 Days</option><option>7-10 Days</option><option>10+ Days</option></select>
+        <select class="border rounded-lg p-3 text-sm"><option>Budget ₹ — ₹₹₹</option><option>₹10k–₹20k</option><option>₹20k–₹40k</option><option>₹40k+</option></select>
+        <div class="md:col-span-5 grid md:grid-cols-6 gap-3">
+          <input class="border rounded-lg p-3 text-sm md:col-span-4" placeholder="Your Name & Phone" />
+          <button class="md:col-span-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-xl p-3 font-semibold">Get Free Quotes</button>
+        </div>
+      </div>
+      <!-- quick chips -->
+      <div id="themes" class="mt-4 flex gap-3 overflow-x-auto pb-3">
+        <span class="px-4 py-2 rounded-full border bg-white whitespace-nowrap">Honeymoon</span>
+        <span class="px-4 py-2 rounded-full border bg-white whitespace-nowrap">Family</span>
+        <span class="px-4 py-2 rounded-full border bg-white whitespace-nowrap">Adventure</span>
+        <span class="px-4 py-2 rounded-full border bg-white whitespace-nowrap">Weekend</span>
+        <span class="px-4 py-2 rounded-full border bg-white whitespace-nowrap">Religious</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scrolling hero carousel (couples / family) -->
+  <section class="max-w-7xl mx-auto px-4 py-8">
+    <div class="flex gap-4 overflow-x-auto snap-x">
+      <div class="min-w-[85%] sm:min-w-[48%] snap-start rounded-2xl overflow-hidden shadow bg-white">
+        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1600&auto=format&fit=crop" class="w-full h-56 object-cover" alt="Couple"/>
+        <div class="p-4"><h3 class="font-semibold text-lg">Couples Special</h3><p class="text-sm text-gray-600">Sunset point • Private cab • Candlelight dinner</p></div>
+      </div>
+      <div class="min-w-[85%] sm:min-w-[48%] snap-start rounded-2xl overflow-hidden shadow bg-white">
+        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1600&auto=format&fit=crop" class="w-full h-56 object-cover" alt="Family"/>
+        <div class="p-4"><h3 class="font-semibold text-lg">Family Holidays</h3><p class="text-sm text-gray-600">Kid‑friendly stays • Toy train • Easy sightseeing</p></div>
+      </div>
+      <div class="min-w-[85%] sm:min-w-[48%] snap-start rounded-2xl overflow-hidden shadow bg-white">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop" class="w-full h-56 object-cover" alt="Adventure"/>
+        <div class="p-4"><h3 class="font-semibold text-lg">Adventure Weeks</h3><p class="text-sm text-gray-600">Treks • Camping • Paragliding</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destinations (with best season + next date) -->
+  <section id="destinations" class="max-w-7xl mx-auto px-4 pb-2">
+    <div class="flex items-baseline justify-between mb-3">
+      <h2 class="text-2xl font-bold">Popular Destinations</h2>
+      <a href="#" class="text-yellow-600 text-sm">View All →</a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="rounded-2xl overflow-hidden shadow bg-white">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop" class="w-full h-44 object-cover" alt="Sundernagar Lake"/>
+        <div class="p-4">
+          <h3 class="font-semibold text-lg">Sundernagar Lake</h3>
+          <p class="text-xs text-gray-600">Best: Mar–Jun • Next Departures: 02 Sep, 09 Sep</p>
+          <p class="text-sm mt-1">Perfect for couples & families. Evening boat ride & lakeside walk.</p>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow bg-white">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=1200&auto=format&fit=crop" class="w-full h-44 object-cover" alt="Mandi Temples"/>
+        <div class="p-4">
+          <h3 class="font-semibold text-lg">Mandi Heritage</h3>
+          <p class="text-xs text-gray-600">Best: Oct–Feb • Next Departures: 06 Sep, 13 Sep</p>
+          <p class="text-sm mt-1">Explore ancient temples, Suket fair culture and river views.</p>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow bg-white">
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" class="w-full h-44 object-cover" alt="Himalayas"/>
+        <div class="p-4">
+          <h3 class="font-semibold text-lg">Himalayan Adventure</h3>
+          <p class="text-xs text-gray-600">Best: Apr–Sep • Next Departures: 04 Sep, 11 Sep</p>
+          <p class="text-sm mt-1">Trekking, camping & valley sunrises for thrill seekers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packages detailed -->
+  <section id="packages" class="bg-gray-100 py-12 mt-8">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-6">Handpicked Packages</h2>
+      <div class="grid lg:grid-cols-3 gap-6">
+        <!-- Romantic -->
+        <div class="bg-white rounded-2xl shadow overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop" class="w-full h-52 object-cover" alt="Romantic"/>
+          <div class="p-4">
+            <h3 class="font-semibold text-lg">Romantic Himachal (5N/6D)</h3>
+            <p class="text-sm text-gray-600">Sundernagar ▸ Manali ▸ Solang</p>
+            <ul class="text-sm list-disc list-inside my-2 text-gray-700">
+              <li>Mountain‑view stay • Candlelight dinner</li>
+              <li>Private cab • Photoshoot add‑on</li>
+            </ul>
+            <div class="flex items-center justify-between mt-2">
+              <span class="font-bold">From ₹22,999</span>
+              <button class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg px-4 py-2">Get Quote</button>
+            </div>
+          </div>
+        </div>
+        <!-- Family -->
+        <div class="bg-white rounded-2xl shadow overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1200&auto=format&fit=crop" class="w-full h-52 object-cover" alt="Family"/>
+          <div class="p-4">
+            <h3 class="font-semibold text-lg">Family Getaway (6N/7D)</h3>
+            <p class="text-sm text-gray-600">Mandi ▸ Shimla ▸ Kufri</p>
+            <ul class="text-sm list-disc list-inside my-2 text-gray-700">
+              <li>Kid‑friendly sightseeing • Toy train</li>
+              <li>Breakfast & dinner • Local guide</li>
+            </ul>
+            <div class="flex items-center justify-between mt-2">
+              <span class="font-bold">From ₹19,999</span>
+              <button class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg px-4 py-2">Get Quote</button>
+            </div>
+          </div>
+        </div>
+        <!-- Adventure -->
+        <div class="bg-white rounded-2xl shadow overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop" class="w-full h-52 object-cover" alt="Adventure"/>
+          <div class="p-4">
+            <h3 class="font-semibold text-lg">Himalayan Adventure (7N/8D)</h3>
+            <p class="text-sm text-gray-600">Treks • Camping • Paragliding</p>
+            <ul class="text-sm list-disc list-inside my-2 text-gray-700">
+              <li>Certified trek leaders • Safety gear</li>
+              <li>River‑side camp • Bonfire nights</li>
+            </ul>
+            <div class="flex items-center justify-between mt-2">
+              <span class="font-bold">From ₹24,999</span>
+              <button class="bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg px-4 py-2">Get Quote</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Sunshine / Trust badges -->
+  <section class="max-w-7xl mx-auto px-4 py-12">
+    <div class="grid sm:grid-cols-3 gap-6">
+      <div class="bg-white rounded-xl p-6 shadow"><p class="text-3xl">👍</p><h4 class="font-semibold mt-2">Local Himachal Experts</h4><p class="text-sm text-gray-600">Sundernagar & Mandi based planners</p></div>
+      <div class="bg-white rounded-xl p-6 shadow"><p class="text-3xl">🛡️</p><h4 class="font-semibold mt-2">Best Price & Support</h4><p class="text-sm text-gray-600">24×7 assistance • Transparent quotes</p></div>
+      <div class="bg-white rounded-xl p-6 shadow"><p class="text-3xl">⭐</p><h4 class="font-semibold mt-2">10k+ Happy Travellers</h4><p class="text-sm text-gray-600">Since 2019 • 4.8/5 ratings</p></div>
+    </div>
+  </section>
+
+  <!-- Gallery (masonry-ish) -->
+  <section id="gallery" class="bg-gray-100 py-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-6">Trip Gallery</h2>
+      <div class="columns-2 md:columns-3 gap-4 space-y-4">
+        <img class="w-full rounded-xl" src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?q=80&auto=format&fit=crop&w=1000" alt="Himalayas"/>
+        <img class="w-full rounded-xl" src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&auto=format&fit=crop&w=1000" alt="Snow"/>
+        <img class="w-full rounded-xl" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&auto=format&fit=crop&w=1000" alt="Meadows"/>
+        <img class="w-full rounded-xl" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&auto=format&fit=crop&w=1000" alt="River"/>
+        <img class="w-full rounded-xl" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&auto=format&fit=crop&w=1000" alt="Family"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="max-w-7xl mx-auto px-4 py-12">
+    <h2 class="text-2xl font-bold mb-6">What travellers say</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white rounded-2xl shadow p-5">
+        <p class="text-sm">“Perfect honeymoon! Candlelight dinner & Manali views were dreamy.”</p>
+        <div class="flex items-center gap-3 mt-3"><img src="https://randomuser.me/api/portraits/women/68.jpg" class="w-10 h-10 rounded-full" alt="A"/><div><p class="text-sm font-semibold">Neha & Arjun</p><p class="text-xs text-gray-500">Delhi</p></div></div>
+      </div>
+      <div class="bg-white rounded-2xl shadow p-5">
+        <p class="text-sm">“Kids loved the toy train and Kufri. Hotels were clean & comfy.”</p>
+        <div class="flex items-center gap-3 mt-3"><img src="https://randomuser.me/api/portraits/men/76.jpg" class="w-10 h-10 rounded-full" alt="B"/><div><p class="text-sm font-semibold">Sinha Family</p><p class="text-xs text-gray-500">Chandigarh</p></div></div>
+      </div>
+      <div class="bg-white rounded-2xl shadow p-5">
+        <p class="text-sm">“Trek leaders were pro. Camping nights by the river were 🔥.”</p>
+        <div class="flex items-center gap-3 mt-3"><img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full" alt="C"/><div><p class="text-sm font-semibold">Varun M.</p><p class="text-xs text-gray-500">Pune</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- FAQs -->
+  <section class="max-w-7xl mx-auto px-4 py-12">
+    <h2 class="text-2xl font-bold mb-6">FAQs</h2>
+    <div class="space-y-3">
+      <div class="bg-white rounded-xl shadow">
+        <button class="w-full text-left p-4 font-semibold" onclick="toggleFAQ('faq1')">Is airfare included in packages?</button>
+        <div id="faq1" class="px-4 pb-4 hidden text-sm text-gray-600">Airfare is optional. Tell us your city and we'll add best available fares.</div>
+      </div>
+      <div class="bg-white rounded-xl shadow">
+        <button class="w-full text-left p-4 font-semibold" onclick="toggleFAQ('faq2')">Can we customize hotels & itinerary?</button>
+        <div id="faq2" class="px-4 pb-4 hidden text-sm text-gray-600">Yes. Choose hotel category, pace and activities. 100% customizable.</div>
+      </div>
+      <div class="bg-white rounded-xl shadow">
+        <button class="w-full text-left p-4 font-semibold" onclick="toggleFAQ('faq3')">What about snow dates & best season?</button>
+        <div id="faq3" class="px-4 pb-4 hidden text-sm text-gray-600">Snow: Dec–Feb (Shimla/Manali hills). Pleasant weather: Mar–Jun & Sep–Nov.</div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-200">
+    <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-4 gap-8">
+      <div>
+        <p class="text-xl font-extrabold text-yellow-500">☀️ Trip Comfort Holidays</p>
+        <p class="text-sm mt-2">Himachal specialists based in Sundernagar & Mandi. Fully customizable trips.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2">Quick Links</h4>
+        <ul class="text-sm space-y-1">
+          <li><a href="#destinations" class="hover:underline">Destinations</a></li>
+          <li><a href="#packages" class="hover:underline">Packages</a></li>
+          <li><a href="#gallery" class="hover:underline">Gallery</a></li>
+          <li><a href="#team" class="hover:underline">Team</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-2">Themes</h4>
+        <ul class="text-sm space-y-1">
+          <li>Honeymoon</li>
+          <li>Family</li>
+          <li>Adventure</li>
+          <li>Weekend</li>
+        </ul>
+      </div>
+      <h4 class="font-semibold mb-2">Contact:-918091655570</h4> <br>
+		<h4 class="font-semibold mb-2">Email:-tripcomfortholidays@gmail.com</h4>
+    </div>
+    <div class="text-center text-xs py-4 border-t border-gray-800">© 2025 Trip Comfort Holidays • All rights reserved</div>
+  </footer>
+
+  <!-- Sticky mobile bar -->
+  <div class="fixed bottom-0 inset-x-0 bg-white border-t shadow md:hidden flex">
+    <a href="tel:+918091655570" class="flex-1 text-center py-3 font-semibold">Call</a>
+    <a href="https://wa.me/918091655570" class="flex-1 text-center py-3 font-semibold text-white bg-green-500">WhatsApp</a>
+  </div>
+
+  <!-- Floating WhatsApp on desktop -->
+  <a href="https://wa.me/918091655570" class="hidden md:flex fixed bottom-6 right-6 bg-green-500 text-white rounded-full w-14 h-14 items-center justify-center text-2xl shadow-lg">✆</a>
+</body>
+</html>
