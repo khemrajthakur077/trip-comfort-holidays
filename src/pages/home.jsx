@@ -1,13 +1,11 @@
 import React from "react";
-import HeroImg from "../assets/hero.png";
-import FooterHeroImg from "../assets/footer_hero.png";
-import DestinationCard from "../components/DestinationsCart";
-
+import DestinationCard from "../components/DestinationsCart.jsx";
 // DESTINATION IMAGES
 import Honeymoon from "../assets/Honeymoon.jpg";
 import Family from "../assets/family.jpg";
 import Adventure from "../assets/adventure.jpg";
-
+import HeroImg from "../assets/hero.png";
+import FooterHeroImg from "../assets/footer_hero.png";
 import Himachal from "../assets/himachal.jpg";
 import Kashmir from "../assets/kashmir.jpg";
 import Kerala from "../assets/kerala.jpg";
@@ -17,7 +15,6 @@ import Uttarakhand from "../assets/uttarakhand.jpg";
 import Spiti from "../assets/spiti.jpg";
 import Leh from "../assets/leh.jpg";
 import GoldenTriangle from "../assets/taj.jpg";
-
 import Singapore from "../assets/Singapore.jpg";
 import Dubai from "../assets/dubai.jpg";
 
