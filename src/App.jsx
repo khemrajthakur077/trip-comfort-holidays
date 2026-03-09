@@ -4,6 +4,7 @@ import Footer from './components/footer'
 import Home from './pages/home'
 import './index.css'
 
+
 function App() {
  
 
