@@ -1,7 +1,7 @@
 import React from "react";
 import DestinationCard from "../components/DestinationsCart.jsx";
 // DESTINATION IMAGES
-import Honeymoon from "../assets/Honeymoon.jpg";
+import Honeymoon from "../assets/honeymoon.jpg";
 import Family from "../assets/family.jpg";
 import Adventure from "../assets/adventure.jpg";
 import HeroImg from "../assets/hero.png";
@@ -15,7 +15,7 @@ import Uttarakhand from "../assets/uttarakhand.jpg";
 import Spiti from "../assets/spiti.jpg";
 import Leh from "../assets/leh.jpg";
 import GoldenTriangle from "../assets/taj.jpg";
-import Singapore from "../assets/Singapore.jpg";
+import Singapore from "../assets/singapore.jpg";
 import Dubai from "../assets/dubai.jpg";
 
 const Home = () => {
