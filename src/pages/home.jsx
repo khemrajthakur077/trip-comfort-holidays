@@ -13,7 +13,7 @@ const Home = () => {
         <img
           src={HeroImg}
           alt="travel"
-          className="absolute w-full h-full object-cover"
+          className="absolute w-auto h-auto object-cover"
         />
       </section>
 
@@ -24,7 +24,7 @@ const Home = () => {
         <img
           src={FooterHeroImg}
           alt="travel"
-          className=" w-full h-full object-fit"
+          className=" w-auto h-auto "
         />
       </section>
 
