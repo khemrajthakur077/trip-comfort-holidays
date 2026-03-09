@@ -18,7 +18,7 @@ const Home = () => {
       </section>
 
       {/*FOOTER HERO SECTION */}
-      <section className="relative w-full h-[30vh] md:h-[50vh] mt-[50px] ">
+      <section className=" w-full h-[30vh] md:h-[50vh] mt-[50px] ">
 
         {/* Image */}
         <img

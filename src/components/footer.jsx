@@ -2,7 +2,7 @@ import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#e9eef1] text-gray-700 mt-10 text-center md:text-left">
+    <footer className="bg-[#e9eef1] text-gray-700  text-center md:text-left">
 
       {/* Top Footer */}
       <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
