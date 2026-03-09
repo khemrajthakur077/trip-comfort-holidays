@@ -1,5 +1,5 @@
 import React from "react";
-import DestinationCard from "../components/DestinationsCart.jsx";
+import DestinationCard from "../components/DestinationCard";
 // DESTINATION IMAGES
 import Honeymoon from "../assets/honeymoon.jpg";
 import Family from "../assets/family.jpg";
