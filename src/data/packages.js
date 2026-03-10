@@ -99,12 +99,12 @@ export const packages = [
 { id:"romantic-package-kerala", category:"kerala", image:kerala, title:"Romantic Package Kerala", destination:"Kerala", duration:"3N & 4D", from:"Kochi", to:"Kochi", hotel:"3 Star", meal:"Breakfast", oldPrice:17500, price:15750 },
 { id:"magical-kerala-tour", category:"kerala", image:kerala, title:"Magical Kerala Tour", destination:"Kerala", duration:"4N & 5D", from:"Kochi", to:"Kochi", hotel:"3 Star", meal:"Breakfast & Dinner", oldPrice:19570, price:17270 },
 
-{ id:"rajasthan-tour", category:"rajasthan", image:rajstan, title:"Rajasthan Tour", destination:"Rajasthan", duration:"3N & 4D", from:"Udaipur", to:"Udaipur", hotel:"3 Star", meal:"Breakfast", oldPrice:17000, price:15999 },
-{ id:"padharo-mhare-rajasthan", category:"rajasthan", image:rajstan, title:"Padharo Mhare Rajasthan", destination:"Rajasthan", duration:"3N & 4D", from:"Jaipur", to:"Jaipur", hotel:"3 Star", meal:"Breakfast", oldPrice:16000, price:14999 },
-{ id:"desert-of-rajasthan", category:"rajasthan", image:rajstan, title:"Desert of Rajasthan", destination:"Rajasthan", duration:"5N & 6D", from:"Jaisalmer", to:"Udaipur", hotel:"3 Star", meal:"Breakfast", oldPrice:27000, price:24999 },
-{ id:"royal-rajasthan", category:"rajasthan", image:rajstan, title:"Royal Rajasthan", destination:"Rajasthan", duration:"5N & 6D", from:"Jaipur", to:"Jaipur", hotel:"3 Star", meal:"Breakfast & Dinner", oldPrice:24000, price:21999 },
-{ id:"colorful-rajasthan-safari", category:"rajasthan", image:rajstan, title:"Colorful Rajasthan Safari", destination:"Rajasthan", duration:"5N & 6D", from:"Jaipur", to:"Jaipur", hotel:"3 Star", meal:"Breakfast", oldPrice:25000, price:22999 },
-{ id:"colorful-rajasthan", category:"rajasthan", image:rajstan, title:"Colorful Rajasthan", destination:"Rajasthan", duration:"9N & 10D", from:"Jaipur", to:"Jaipur", hotel:"3 Star", meal:"Breakfast", oldPrice:55000, price:50000 },
+{ id:"rajasthan-tour", category:"rajstan", image:rajstan, title:"Rajasthan Tour", destination:"Rajasthan", duration:"3N & 4D", from:"Udaipur", to:"Udaipur", hotel:"3 Star", meal:"Breakfast", oldPrice:17000, price:15999 },
+{ id:"padharo-mhare-rajasthan", category:"rajstan", image:rajstan, title:"Padharo Mhare Rajasthan", destination:"Rajasthan", duration:"3N & 4D", from:"Jaipur", to:"Jaipur", hotel:"3 Star", meal:"Breakfast", oldPrice:16000, price:14999 },
+{ id:"desert-of-rajasthan", category:"rajstan", image:rajstan, title:"Desert of Rajasthan", destination:"Rajasthan", duration:"5N & 6D", from:"Jaisalmer", to:"Udaipur", hotel:"3 Star", meal:"Breakfast", oldPrice:27000, price:24999 },
+{ id:"royal-rajasthan", category:"rajstan", image:rajstan, title:"Royal Rajasthan", destination:"Rajasthan", duration:"5N & 6D", from:"Jaipur", to:"Jaipur", hotel:"3 Star", meal:"Breakfast & Dinner", oldPrice:24000, price:21999 },
+{ id:"colorful-rajasthan-safari", category:"rajstan", image:rajstan, title:"Colorful Rajasthan Safari", destination:"Rajasthan", duration:"5N & 6D", from:"Jaipur", to:"Jaipur", hotel:"3 Star", meal:"Breakfast", oldPrice:25000, price:22999 },
+{ id:"colorful-rajasthan", category:"rajstan", image:rajstan, title:"Colorful Rajasthan", destination:"Rajasthan", duration:"9N & 10D", from:"Jaipur", to:"Jaipur", hotel:"3 Star", meal:"Breakfast", oldPrice:55000, price:50000 },
 
 { id:"royal-sikkim-journey", category:"sikkim", image:sikkim, title:"Royal Sikkim Journey", destination:"Sikkim", duration:"7N & 8D", from:"Bagdogra", to:"Bagdogra", hotel:"3 Star", meal:"Breakfast", oldPrice:23500, price:18500 },
 { id:"royal-sikkim", category:"sikkim", image:sikkim, title:"Royal Sikkim", destination:"Sikkim", duration:"5N & 6D", from:"Bagdogra", to:"Bagdogra", hotel:"3 Star", meal:"Breakfast", oldPrice:38000, price:35700 },
