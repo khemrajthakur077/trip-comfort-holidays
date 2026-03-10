@@ -5,16 +5,16 @@ import Home from './pages/home'
 import './index.css'
 import { Routes,Route } from 'react-router-dom'
 import Honeymoon from './packages/honeymoon'
-import Family from "./packages/Family";
-import Adventure from "./packages/Adventure";
+import Family from "./packages/family";
+import Adventure from "./packages/adventure";
 
-import Himachal from "./packages/Himachal";
-import Kashmir from "./packages/Kashmir";
-import Kerala from "./packages/Kerala";
-import Rajstan from "./packages/Rajstan";
-import Sikkim from "./packages/Sikkim";
-import Uttarakhand from "./packages/Uttarakhand";
-import Spiti from "./packages/Spiti";
+import Himachal from "./packages/himachal";
+import Kashmir from "./packages/kashmir";
+import Kerala from "./packages/kerala";
+import Rajstan from "./packages/rajstan";
+import Sikkim from "./packages/sikkim";
+import Uttarakhand from "./packages/uttarakhand";
+import Spiti from "./packages/spiti";
 import LehLadakh from "./packages/LehLadakh";
 import GoldenTriangle from "./packages/GoldenTriangle";
 
