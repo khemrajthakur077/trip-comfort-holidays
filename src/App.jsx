@@ -18,8 +18,8 @@ import Spiti from "./packages/spiti";
 import LehLadakh from "./packages/LehLadakh";
 import GoldenTriangle from "./packages/GoldenTriangle";
 
-import Singapore from "./packages/Singapore";
-import Dubai from "./packages/Dubai";
+import Singapore from "./packages/singapore";
+import Dubai from "./packages/dubai";
 
 
 
