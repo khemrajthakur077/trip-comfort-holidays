@@ -8,7 +8,8 @@ import himachal from "../assets/himachal.jpg"
 import rajstan from "../assets/rajstan.jpg"
 import uttarakhand from "../assets/uttarakhand.jpg"
 import spiti from "../assets/spiti.jpg"
-import leh from "../assets/Leh.jpg"
+import leh from "../assets/leh.jpg"
+import taj from "../assets/taj.jpg"
 
 export const packages = [
 
@@ -124,10 +125,10 @@ export const packages = [
 { id:"leh-ladakh-holiday", category:"leh-ladakh", image:leh, title:"Leh Ladakh Holiday", destination:"Leh Ladakh", duration:"7N & 8D", from:"Srinagar", to:"Srinagar", hotel:"3 Star", meal:"Breakfast & Dinner", oldPrice:35000, price:32999 },
 { id:"leh-ladakh-adventure", category:"leh-ladakh", image:leh, title:"Leh Ladakh Adventure", destination:"Leh Ladakh", duration:"5N & 6D", from:"Leh", to:"Leh", hotel:"3 Star", meal:"Breakfast & Dinner", oldPrice:26500, price:24999 },
 
-{ id:"delhi-agra-jaipur-honeymoon", category:"golden-triangle", image:rajstan, title:"Delhi Agra Jaipur Honeymoon", destination:"Golden Triangle", duration:"4N & 5D", from:"Delhi", to:"Delhi", hotel:"3 Star", meal:"Breakfast", oldPrice:28500, price:24530 },
-{ id:"delhi-agra-jaipur", category:"golden-triangle", image:rajstan, title:"Delhi Agra Jaipur", destination:"Golden Triangle", duration:"4N & 5D", from:"Delhi", to:"Delhi", hotel:"3 Star", meal:"Breakfast", oldPrice:24500, price:20730 },
-{ id:"golden-triangle-honeymoon", category:"golden-triangle", image:rajstan, title:"Golden Triangle Honeymoon", destination:"Golden Triangle", duration:"4N & 5D", from:"Delhi", to:"Jaipur", hotel:"3 Star", meal:"Breakfast", oldPrice:22500, price:19030 },
-{ id:"golden-triangle", category:"golden-triangle", image:rajstan, title:"Golden Triangle", destination:"Golden Triangle", duration:"4N & 5D", from:"Delhi", to:"Jaipur", hotel:"2 Star", meal:"Breakfast", oldPrice:21500, price:17650 },
+{ id:"delhi-agra-jaipur-honeymoon", category:"golden-triangle", image:taj, title:"Delhi Agra Jaipur Honeymoon", destination:"Golden Triangle", duration:"4N & 5D", from:"Delhi", to:"Delhi", hotel:"3 Star", meal:"Breakfast", oldPrice:28500, price:24530 },
+{ id:"delhi-agra-jaipur", category:"golden-triangle", image:taj, title:"Delhi Agra Jaipur", destination:"Golden Triangle", duration:"4N & 5D", from:"Delhi", to:"Delhi", hotel:"3 Star", meal:"Breakfast", oldPrice:24500, price:20730 },
+{ id:"golden-triangle-honeymoon", category:"golden-triangle", image:taj, title:"Golden Triangle Honeymoon", destination:"Golden Triangle", duration:"4N & 5D", from:"Delhi", to:"Jaipur", hotel:"3 Star", meal:"Breakfast", oldPrice:22500, price:19030 },
+{ id:"golden-triangle", category:"golden-triangle", image:taj, title:"Golden Triangle", destination:"Golden Triangle", duration:"4N & 5D", from:"Delhi", to:"Jaipur", hotel:"2 Star", meal:"Breakfast", oldPrice:21500, price:17650 },
 
 { id:"explore-dubai-tour", category:"dubai", image:dubai, title:"Explore Dubai Tour", destination:"Dubai", duration:"4N & 5D", from:"Dubai", to:"Dubai", hotel:"3 Star", meal:"Breakfast", oldPrice:41500, price:38999 },
 { id:"grand-dubai", category:"dubai", image:dubai, title:"Grand Dubai", destination:"Dubai", duration:"7N & 8D", from:"Dubai", to:"Dubai", hotel:"3 Star", meal:"Breakfast", oldPrice:39000, price:37650 },
