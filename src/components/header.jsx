@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../index.css";
 import Logo from "../assets/TCH_logo.svg";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -22,13 +23,14 @@ export default function Header() {
 
         {/* LEFT (Logo + Text) */}
         <div className="flex items-center gap-3">
-
+          <Link to="/">
           <img
             src={Logo}
             alt="logo"
             className="h-[60px] md:h-[80px]"
           />
-
+          </Link>
+          <Link to="/">
           <div className="flex flex-col">
             <h1 className="text-lg md:text-xl font-bold">
               Trip Comfort Holidays
@@ -37,15 +39,18 @@ export default function Header() {
               Explore the Destination
             </p>
           </div>
+          </Link>
 
         </div>
 
         {/* DESKTOP NAV */}
-        <nav className="hidden lg:flex items-center gap-10 font-semibold text-orange-600">
-          <a href="#">Honeymoon</a>
-          <a href="#">Family</a>
-          <a href="#">Adventure</a>
-          <a href="#">Guest Gallery</a>
+        <nav>
+          <ul  className="hidden lg:flex items-center gap-10 font-semibold text-orange-600">
+            <Link to="/honeymoon"><li>Honeymoon</li></Link>
+            <Link to="/family"><li>Family</li></Link>
+            <Link to="/adventure"><li>Adventure</li></Link>
+            <Link to="/guestGallery"><li>Guest Gallery</li></Link>
+            </ul>
         </nav>
 
         {/* RIGHT SIDE */}
@@ -71,11 +76,13 @@ export default function Header() {
       {menuOpen && (
         <div className="lg:hidden bg-white border-t">
 
-          <nav className="flex flex-col gap-4 p-5 text-orange-600 font-semibold">
-            <a href="#">Honeymoon</a>
-            <a href="#">Family</a>
-            <a href="#">Adventure</a>
-            <a href="#">Guest Gallery</a>
+          <nav>
+            <ul  className="flex flex-col gap-4 p-5 text-orange-600 font-semibold">
+            <Link to="/honeymoon"><li>Honeymoon</li></Link>
+            <Link to="/family"><li>Family</li></Link>
+            <Link to="/adventure"><li>Adventure</li></Link>
+            <Link to="/guestGallery"><li>Guest Gallery</li></Link>
+            </ul>
           </nav>
 
         </div>

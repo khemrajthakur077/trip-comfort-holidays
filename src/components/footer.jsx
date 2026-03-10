@@ -73,7 +73,7 @@ export default function Footer() {
 
       {/* Bottom Footer */}
       <div className="text-center text-gray-600 py-6 text-sm">
-        © 2026 Trip Comfort Holidays Pvt Ltd. All Rights Reserved
+        © 2026 Trip Comfort Holidays. All Rights Reserved
       </div>
 
     </footer>
