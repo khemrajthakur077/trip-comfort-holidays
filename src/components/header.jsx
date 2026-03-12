@@ -1,93 +1,114 @@
 import { useState } from "react";
-import "../index.css";
+import { Link, useLocation } from "react-router-dom";
+import { FaPhoneAlt, FaUser, FaBars, FaTimes, FaWallet, FaGift, FaBook } from "react-icons/fa";
 import Logo from "../assets/TCH_logo.svg";
-import { Link } from "react-router-dom";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const navLinks = [
+    { name: "Romantic Escapes", path: "/honeymoon" },
+    { name: "Family Getaways", path: "/family" },
+    { name: "Thrill Seekers", path: "/adventure" },
+    { name: "Traveler Stories", path: "/guestGallery" },
+  ];
 
   return (
-    <header className="w-full bg-white shadow-sm">
-
-      {/* TOP BAR */}
-      <div className="hidden md:flex w-full h-[30px] bg-gradient-to-r from-orange-500 to-teal-400 text-white items-center justify-end pr-8 gap-8">
-        <span>📞 80916-55570</span>
-        <a href="#">Pay Now</a>
-        <a href="#">Blogs</a>
-        <a href="#">Offers</a>
-        <span>👤</span>
+    <header className="w-full bg-white sticky top-0 z-50 shadow-md">
+      {/* --- TOP BAR (Indigo Theme) --- */}
+      <div className="hidden md:flex w-full h-[36px] bg-[#4F46E5] text-white items-center justify-between px-10 text-xs font-medium">
+        <div className="flex items-center gap-4">
+          <span className="flex items-center gap-2 hover:text-indigo-200 cursor-pointer transition">
+            <FaPhoneAlt size={12} /> 80916-55570
+          </span>
+        </div>
+        <div className="flex items-center gap-6 uppercase tracking-wider">
+          <a href="#" className="flex items-center gap-1 hover:text-indigo-200 transition"><FaWallet size={12}/> Pay Now</a>
+          <a href="#" className="flex items-center gap-1 hover:text-indigo-200 transition"><FaBook size={12}/> Blogs</a>
+          <a href="#" className="flex items-center gap-1 hover:text-indigo-200 transition"><FaGift size={12}/> Offers</a>
+          <span className="h-4 w-[1px] bg-indigo-400"></span>
+          <FaUser className="cursor-pointer hover:text-indigo-200" />
+        </div>
       </div>
 
-      {/* MAIN HEADER */}
+      {/* --- MAIN HEADER --- */}
       <div className="flex items-center justify-between px-4 md:px-10 py-3">
-
-        {/* LEFT (Logo + Text) */}
-        <div className="flex items-center gap-3">
-          <Link to="/">
+        
+        {/* LEFT: Logo & Branding */}
+        <Link to="/" className="flex items-center gap-4 group">
           <img
             src={Logo}
-            alt="logo"
-            className="h-[60px] md:h-[80px]"
+            alt="Trip Comfort Logo"
+            className="h-[55px] md:h-[70px] transition-transform duration-300 group-hover:scale-105"
           />
-          </Link>
-          <Link to="/">
           <div className="flex flex-col">
-            <h1 className="text-lg md:text-xl font-bold">
-              Trip Comfort Holidays
+            <h1 className="text-xl md:text-2xl font-extrabold text-slate-800 leading-tight">
+              Trip Comfort<span className="text-[#4F46E5]"> Holidays</span>
             </h1>
-            <p className="text-xs md:text-sm text-gray-500">
+            <p className="text-[10px] md:text-xs text-slate-500 uppercase tracking-[2px] font-semibold">
               Explore the Destination
             </p>
           </div>
-          </Link>
+        </Link>
 
-        </div>
-
-        {/* DESKTOP NAV */}
-        <nav>
-          <ul  className="hidden lg:flex items-center gap-10 font-semibold text-orange-600">
-            <Link to="/honeymoon"><li>Honeymoon</li></Link>
-            <Link to="/family"><li>Family</li></Link>
-            <Link to="/adventure"><li>Adventure</li></Link>
-            <Link to="/guestGallery"><li>Guest Gallery</li></Link>
-            </ul>
+        {/* CENTER: Desktop Navigation */}
+        <nav className="hidden lg:block">
+          <ul className="flex items-center gap-8 font-bold text-slate-600">
+            {navLinks.map((link) => (
+              <li key={link.name} className="relative group">
+                <Link 
+                  to={link.path}
+                  className={`hover:text-[#4F46E5] transition-colors duration-300 ${location.pathname === link.path ? 'text-[#4F46E5]' : ''}`}
+                >
+                  {link.name}
+                  {/* Underline Animation */}
+                  <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-[#4F46E5] transition-all duration-300 group-hover:w-full ${location.pathname === link.path ? 'w-full' : ''}`}></span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </nav>
 
-        {/* RIGHT SIDE */}
-        <div className="flex items-center gap-3">
-
-          <button className="hidden md:block bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-2 rounded-full font-semibold shadow-md hover:scale-105 transition">
+        {/* RIGHT: CTA Button & Mobile Toggle */}
+        <div className="flex items-center gap-4">
+          <button className="hidden md:block bg-[#4F46E5] text-white px-7 py-2.5 rounded-lg font-bold text-sm shadow-[0_4px_14px_0_rgba(79,70,229,0.39)] hover:bg-[#4338CA] hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300">
             GET QUOTE
           </button>
 
-          {/* MOBILE MENU BUTTON */}
+          {/* Mobile Menu Icon */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden text-3xl"
+            className="lg:hidden text-[#4F46E5] p-2 transition-transform active:scale-90"
           >
-            ☰
+            {menuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
           </button>
-
         </div>
-
       </div>
 
-      {/* MOBILE NAV */}
-      {menuOpen && (
-        <div className="lg:hidden bg-white border-t">
-
-          <nav>
-            <ul  className="flex flex-col gap-4 p-5 text-orange-600 font-semibold">
-            <Link to="/honeymoon"><li>Honeymoon</li></Link>
-            <Link to="/family"><li>Family</li></Link>
-            <Link to="/adventure"><li>Adventure</li></Link>
-            <Link to="/guestGallery"><li>Guest Gallery</li></Link>
-            </ul>
-          </nav>
-
-        </div>
-      )}
-
+      {/* --- MOBILE NAVIGATION --- */}
+      <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${menuOpen ? 'max-h-[400px] border-t bg-slate-50' : 'max-h-0'}`}>
+        <nav className="p-6">
+          <ul className="flex flex-col gap-5 text-slate-700 font-bold">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <Link 
+                  to={link.path} 
+                  onClick={() => setMenuOpen(false)}
+                  className="block text-lg hover:text-[#4F46E5] transition"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+            <li className="pt-4 border-t border-slate-200">
+              <button className="w-full bg-[#4F46E5] text-white py-3 rounded-xl font-bold">
+                GET QUOTE
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }

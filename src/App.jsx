@@ -21,6 +21,7 @@ import GoldenTriangle from "./packages/GoldenTriangle";
 import Singapore from "./packages/singapore";
 import Dubai from "./packages/dubai";
 
+import DynamicTourPage from "./components/pkgDetail"
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
   return (
     <>
     <Header/>
+     
     <Routes>
        <Route path='/' element={<Home/>}/>
      
@@ -50,6 +52,8 @@ function App() {
         {/* International */}
         <Route path="/singapore" element={<Singapore />} />
         <Route path="/dubai" element={<Dubai />} />
+
+       <Route path="/tour/:id" element={<DynamicTourPage />} />
 
       
 
