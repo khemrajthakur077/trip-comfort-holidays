@@ -24,11 +24,11 @@ export default function Header() {
           </span>
         </div>
         <div className="flex items-center gap-6 uppercase tracking-wider">
-          <a href="#" className="flex items-center gap-1 hover:text-indigo-200 transition"><FaWallet size={12}/> Pay Now</a>
-          <a href="#" className="flex items-center gap-1 hover:text-indigo-200 transition"><FaBook size={12}/> Blogs</a>
-          <a href="#" className="flex items-center gap-1 hover:text-indigo-200 transition"><FaGift size={12}/> Offers</a>
-          <span className="h-4 w-[1px] bg-indigo-400"></span>
-          <FaUser className="cursor-pointer hover:text-indigo-200" />
+         <Link to="/pay"> <li className="flex items-center gap-1 hover:text-indigo-200 transition"><FaWallet size={12}/> Pay Now</li></Link>
+         <Link to="/blogs"> <li  className="flex items-center gap-1 hover:text-indigo-200 transition"><FaBook size={12}/> Blogs</li></Link>
+         <Link to="/offers"><li className="flex items-center gap-1 hover:text-indigo-200 transition"><FaGift size={12}/> Offers</li></Link>
+          <Link to="/admin/login"><span className="h-4 w-[1px] bg-indigo-400"></span>
+          <FaUser className="cursor-pointer hover:text-indigo-200" /></Link>
         </div>
       </div>
 
@@ -72,9 +72,16 @@ export default function Header() {
 
         {/* RIGHT: CTA Button & Mobile Toggle */}
         <div className="flex items-center gap-4">
-          <button className="hidden md:block bg-[#4F46E5] text-white px-7 py-2.5 rounded-lg font-bold text-sm shadow-[0_4px_14px_0_rgba(79,70,229,0.39)] hover:bg-[#4338CA] hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300">
+                <a 
+          href="https://wa.me/918091655570?text=Hello%20Trip%20Comfort%20Holidays!%20I%20want%20to%20get%20a%20quote%20for%20a%20tour%20package." 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="hidden md:block"
+        >
+          <button className="bg-[#4F46E5] text-white px-7 py-2.5 rounded-lg font-bold text-sm shadow-[0_4px_14px_0_rgba(79,70,229,0.39)] hover:bg-[#4338CA] hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300">
             GET QUOTE
           </button>
+        </a>
 
           {/* Mobile Menu Icon */}
           <button

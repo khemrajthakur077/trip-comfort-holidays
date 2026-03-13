@@ -1,186 +1,184 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import { MapPin, Clock, Send, CheckCircle2, XCircle, Calendar, Loader2 } from 'lucide-react';
+import { MapPin, Clock, Send, CheckCircle2, XCircle, Calendar, Loader2, Phone } from 'lucide-react';
 
 const DynamicTourPage = () => {
-const { id } = useParams();
-
-console.log("ID:", id);
+  const { id } = useParams();
   const [tourData, setTourData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const phone = "8091655570";
 
   useEffect(() => {
+    if (!id) return;
 
-  console.log("URL PARAM ID:", id);
+    const fetchTourDetails = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("packages")
+          .select("*")
+          .eq("id", id)
+          .maybeSingle();
 
-  if (!id) {
-    console.error("ID missing from URL");
-    return;
-  }
+        if (error) throw error;
 
-  const fetchTourDetails = async () => {
-    try {
-
-      const { data, error } = await supabase
-        .from("packages")
-        .select("*")
-        .eq("id", id)
-        .maybeSingle();
-
-      if (error) {
-        console.error("Supabase error:", error);
-        return;
-      }
-
-      if (!data) {
-        console.error("No package found:", id);
-        return;
-      }
-
-      if (typeof data.itinerary === "string") {
-        try {
-          data.itinerary = JSON.parse(data.itinerary);
-        } catch {
-          data.itinerary = [];
+        if (data && typeof data.itinerary === "string") {
+          try {
+            data.itinerary = JSON.parse(data.itinerary);
+          } catch {
+            data.itinerary = [];
+          }
         }
+        setTourData(data);
+      } catch (err) {
+        console.error("Error fetching tour:", err);
+      } finally {
+        setLoading(false);
       }
+    };
 
-      setTourData(data);
-
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  fetchTourDetails();
-
-}, [id]);
+    fetchTourDetails();
+  }, [id]);
 
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen bg-slate-50">
-        <Loader2 className="animate-spin text-orange-600 mb-4" size={48} />
-        <p className="text-slate-500 font-medium animate-pulse">Fetching best deals for you...</p>
+        <Loader2 className="animate-spin text-[#4F46E5]" size={48} />
+        <p className="text-slate-500 font-medium mt-4 animate-pulse">Designing your perfect escape...</p>
       </div>
     );
   }
 
   if (!tourData) {
     return (
-      <div className="text-center py-20 bg-white min-h-screen">
-        <h1 className="text-2xl font-bold text-red-500 mb-4">Package Not Found!</h1>
-        <p className="text-slate-500">The ID "{id}" does not match any package in our database.</p>
-        <button onClick={() => window.history.back()} className="mt-6 bg-orange-600 text-white px-6 py-2 rounded-xl">Go Back</button>
+      <div className="text-center py-20 bg-white min-h-screen flex flex-col items-center justify-center px-4">
+        <h1 className="text-3xl font-bold text-slate-800 mb-2">Package Not Found</h1>
+        <p className="text-slate-500 mb-8 text-lg">We couldn't find the tour you're looking for.</p>
+        <button onClick={() => window.history.back()} className="bg-[#4F46E5] text-white px-8 py-3 rounded-xl font-bold hover:bg-indigo-700 transition shadow-lg shadow-indigo-200">
+          Go Back
+        </button>
       </div>
     );
   }
 
-  const waMessage = encodeURIComponent(`Hi! I want to book the ${tourData.title} package for ₹${tourData.price}. Please share details.`);
+  const waMessage = encodeURIComponent(`Hi! I'm interested in booking the "${tourData.title}" package. Please share more details.`);
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 pb-20 lg:pb-0">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 pb-24 lg:pb-12">
       
-      {/* Mobile Bottom Bar */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t p-4 z-50 flex justify-between items-center shadow-2xl">
+      {/* Mobile Bottom Bar (Z-Index High) */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t p-4 z-[100] flex justify-between items-center shadow-[0_-10px_30px_rgba(0,0,0,0.1)]">
         <div>
-          <p className="text-sm text-slate-400 line-through">₹{tourData.old_price}</p>
-          <p className="text-xl font-bold text-orange-600">₹{tourData.price}</p>
+          <p className="text-xs text-slate-400 line-through font-medium">₹{tourData.old_price}</p>
+          <p className="text-2xl font-black text-[#4F46E5]">₹{tourData.price}</p>
         </div>
-        <a href={`https://wa.me/91${phone}?text=${waMessage}`} className="bg-orange-600 text-white px-6 py-2 rounded-xl font-bold flex items-center gap-2">
+        <a href={`https://wa.me/91${phone}?text=${waMessage}`} className="bg-[#4F46E5] text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 active:scale-95 transition">
           <Send size={18} /> Book Now
         </a>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-8 lg:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+      <div className="max-w-7xl mx-auto px-4 py-8 lg:py-16 mt-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           
-          <div className="lg:col-span-2 space-y-8">
-            <header className="space-y-4">
-              <div className="inline-block bg-orange-100 text-orange-700 px-4 py-1 rounded-full text-sm font-bold tracking-wide uppercase">
-                {tourData.category}
+          {/* LEFT: Main Content */}
+          <div className="lg:col-span-2 space-y-10">
+            <header className="space-y-5">
+              <div className="inline-flex items-center gap-2 bg-indigo-50 text-[#4F46E5] px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase">
+                <span className="w-2 h-2 bg-[#4F46E5] rounded-full animate-pulse"></span>
+                {tourData.category || "Premium Tour"}
               </div>
-              <h1 className="text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
+              <h1 className="text-4xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
                 {tourData.title}
               </h1>
-              {tourData.subtitle && <p className="text-lg text-slate-500 italic">{tourData.subtitle}</p>}
+              {tourData.subtitle && <p className="text-xl text-slate-500 font-medium max-w-2xl leading-relaxed">{tourData.subtitle}</p>}
               
-              <div className="flex flex-wrap gap-4 text-slate-600">
-                <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-2xl border shadow-sm">
-                  <Clock size={18} className="text-orange-500"/> <span>{tourData.duration}</span>
+              <div className="flex flex-wrap gap-4 pt-2 text-slate-600 font-bold text-sm">
+                <div className="flex items-center gap-2 bg-white px-5 py-3 rounded-2xl border border-slate-100 shadow-sm">
+                  <Clock size={18} className="text-[#4F46E5]"/> <span>{tourData.duration}</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-2xl border shadow-sm">
-                  <MapPin size={18} className="text-orange-500"/> <span>{tourData.destination || tourData.to_location}</span>
+                <div className="flex items-center gap-2 bg-white px-5 py-3 rounded-2xl border border-slate-100 shadow-sm">
+                  <MapPin size={18} className="text-[#4F46E5]"/> <span>{tourData.destination || tourData.to_location}</span>
                 </div>
               </div>
             </header>
 
-            {/* Main Image */}
-            <div className="rounded-[2.5rem] overflow-hidden h-[300px] lg:h-[450px] shadow-lg border-4 border-white">
-               <img src={tourData.image_url} alt={tourData.title} className="w-full h-full object-cover" />
+            {/* Main Image with Zoom Effect */}
+            <div className="rounded-[3rem] overflow-hidden h-[350px] lg:h-[500px] shadow-2xl border-8 border-white group relative">
+                <img src={tourData.image_url} alt={tourData.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
 
             {/* Timeline Section */}
-            <div className="bg-white rounded-[2.5rem] p-6 lg:p-10 shadow-sm border border-slate-100">
-              <h2 className="text-2xl font-bold mb-10 flex items-center gap-3 italic text-indigo-900">
-                <Calendar className="text-orange-600" /> JOURNEY TIMELINE
+            <div className="bg-white rounded-[3rem] p-8 lg:p-12 shadow-sm border border-slate-100">
+              <h2 className="text-3xl font-black mb-12 flex items-center gap-4 text-slate-900">
+                <Calendar className="text-[#4F46E5]" size={32} /> Journey Timeline
               </h2>
 
-              <div className="space-y-12 relative before:content-[''] before:absolute before:left-4 before:top-2 before:bottom-2 before:w-1 before:bg-orange-50">
+              <div className="space-y-12 relative before:content-[''] before:absolute before:left-4 before:top-2 before:bottom-2 before:w-[2px] before:bg-indigo-50">
                 {Array.isArray(tourData.itinerary) ? tourData.itinerary.map((item, index) => (
                   <div key={index} className="relative pl-12 group">
-                    <div className="absolute left-0 top-1 w-9 h-9 bg-white border-4 border-orange-600 text-orange-600 rounded-full flex items-center justify-center text-sm font-black z-10 group-hover:bg-orange-600 group-hover:text-white transition-all duration-300 shadow-md">
+                    <div className="absolute left-[-2px] top-1 w-9 h-9 bg-white border-4 border-[#4F46E5] text-[#4F46E5] rounded-full flex items-center justify-center text-sm font-black z-10 group-hover:bg-[#4F46E5] group-hover:text-white transition-all duration-300 shadow-lg shadow-indigo-100">
                       {index + 1}
                     </div>
-                    <div className="bg-slate-50/50 p-6 rounded-3xl border border-transparent group-hover:border-orange-100 group-hover:bg-white transition-all shadow-sm">
-                      <h3 className="text-xl font-bold text-slate-800 mb-2">Day {index + 1}: {item.title || item.day}</h3>
-                      {item.highlight && <p className="text-orange-700 font-semibold text-sm mb-2">⭐ {item.highlight}</p>}
-                      <ul className="text-slate-600 space-y-1">
+                    <div className="bg-slate-50/50 p-8 rounded-[2.5rem] border-2 border-transparent group-hover:border-indigo-50 group-hover:bg-white transition-all shadow-sm">
+                      <h3 className="text-2xl font-black text-slate-800 mb-3">{item.title || item.day}</h3>
+                      {item.highlight && <div className="inline-block bg-orange-50 text-orange-700 text-xs font-bold px-3 py-1 rounded-md mb-4 uppercase tracking-wider italic font-sans">⭐ {item.highlight}</div>}
+                      <ul className="text-slate-600 space-y-2">
                         {item.spots && Array.isArray(item.spots) ? item.spots.map((spot, i) => (
-                          <li key={i} className="flex items-center gap-2 text-sm">• {spot}</li>
-                        )) : item.stay && <li className="text-sm">🏨 {item.stay}</li>}
+                          <li key={i} className="flex items-center gap-3 text-base leading-relaxed">• {spot}</li>
+                        )) : item.stay && <li className="text-base font-medium flex items-center gap-2">🏨 Stay: <span className="text-indigo-600">{item.stay}</span></li>}
                       </ul>
                     </div>
                   </div>
-                )) : <p className="pl-12 text-slate-500 italic">Itinerary details loading...</p>}
+                )) : <p className="pl-12 text-slate-400 italic">Preparing your itinerary...</p>}
               </div>
             </div>
 
             {/* Inclusions & Exclusions */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-               <div className="bg-green-50/50 p-8 rounded-[2rem] border border-green-100">
-                  <h3 className="text-green-800 font-bold mb-4 flex items-center gap-2"><CheckCircle2 size={20}/> What's Included</h3>
-                  <p className="text-slate-600 text-sm leading-loose whitespace-pre-line">{tourData.inclusions || 'Please contact for details'}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+               <div className="bg-indigo-50/30 p-10 rounded-[2.5rem] border border-indigo-50">
+                  <h3 className="text-indigo-900 text-xl font-black mb-6 flex items-center gap-3"><CheckCircle2 size={24} className="text-[#4F46E5]"/> What's Included</h3>
+                  <p className="text-slate-600 text-sm leading-[1.8] font-medium whitespace-pre-line">{tourData.inclusions || 'Please contact for details'}</p>
                </div>
-               <div className="bg-red-50/50 p-8 rounded-[2rem] border border-red-100">
-                  <h3 className="text-red-800 font-bold mb-4 flex items-center gap-2"><XCircle size={20}/> What's Excluded</h3>
-                  <p className="text-slate-600 text-sm leading-loose whitespace-pre-line">{tourData.exclusions || 'Please contact for details'}</p>
+               <div className="bg-rose-50/30 p-10 rounded-[2.5rem] border border-rose-50">
+                  <h3 className="text-rose-900 text-xl font-black mb-6 flex items-center gap-3"><XCircle size={24} className="text-rose-500"/> What's Excluded</h3>
+                  <p className="text-slate-600 text-sm leading-[1.8] font-medium whitespace-pre-line">{tourData.exclusions || 'Please contact for details'}</p>
                </div>
             </div>
           </div>
 
-          {/* Right Price Card */}
+          {/* RIGHT: Price Card (Sticky Fixed) */}
           <div className="relative">
-            <div className="lg:sticky lg:top-8 space-y-6">
-              <div className="bg-slate-900 text-white rounded-[2.5rem] p-8 shadow-2xl overflow-hidden relative">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-orange-600/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
+            {/* top-28 ensures it stays below your sticky header */}
+            <div className="lg:sticky lg:top-28 space-y-6 z-20">
+              <div className="bg-slate-900 text-white rounded-[3rem] p-10 shadow-2xl overflow-hidden relative border border-slate-800">
+                <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-500/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
                 <div className="relative z-10">
-                  <div className="bg-orange-600 w-fit px-4 py-1 rounded-full text-xs font-bold mb-4">
+                  <div className="bg-[#4F46E5] w-fit px-5 py-1.5 rounded-full text-xs font-black mb-6 uppercase tracking-widest shadow-lg shadow-indigo-900/50">
                     SAVE ₹{tourData.old_price - tourData.price}
                   </div>
-                  <p className="text-slate-400 line-through">₹{tourData.old_price}</p>
-                  <div className="flex items-baseline gap-2 mb-8">
-                    <h2 className="text-5xl font-black">₹{tourData.price}</h2>
-                    <span className="text-slate-400">/ person</span>
+                  <p className="text-slate-500 line-through font-bold text-lg mb-1">₹{tourData.old_price}</p>
+                  <div className="flex items-baseline gap-2 mb-10">
+                    <h2 className="text-6xl font-black tracking-tighter text-white">₹{tourData.price}</h2>
+                    <span className="text-slate-400 font-bold uppercase text-xs tracking-widest">/ person</span>
                   </div>
-                  <a href={`https://wa.me/91${phone}?text=${waMessage}`} className="w-full bg-orange-600 hover:bg-orange-500 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-orange-900/20">
-                    <Send size={20}/> Get Free Quote
+                  <a href={`https://wa.me/91${phone}?text=${waMessage}`} className="w-full bg-[#4F46E5] hover:bg-indigo-700 py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all shadow-xl shadow-indigo-950/20 active:scale-95 group">
+                    <Send size={22} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /> Get Free Quote
                   </a>
                 </div>
+              </div>
+
+              {/* Instant Help Widget */}
+              <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col items-center text-center">
+                <div className="w-12 h-12 bg-indigo-50 rounded-full flex items-center justify-center text-[#4F46E5] mb-4">
+                  <Phone size={20} />
+                </div>
+                <h4 className="text-lg font-black text-slate-800 mb-2 tracking-tight">Need Assistance?</h4>
+                <p className="text-sm text-slate-500 font-medium mb-5 leading-relaxed">Talk to our travel experts for a customized itinerary.</p>
+                <a href={`tel:${phone}`} className="text-slate-900 font-black text-xl hover:text-[#4F46E5] transition-colors">
+                  +91 80916-55570
+                </a>
               </div>
             </div>
           </div>
