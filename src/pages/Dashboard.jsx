@@ -9,27 +9,32 @@ import {
   LogOut, 
   PlusCircle, 
   TrendingUp,
-  Loader2
+  Loader2,
+  Image as ImageIcon,
+  MessageSquare // Naya icon import kiya queries ke liye
 } from 'lucide-react';
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [stats, setStats] = useState({ blogs: 0, packages: 0, offers: 0 });
+  // stats mein queries add kiya
+  const [stats, setStats] = useState({ blogs: 0, packages: 0, offers: 0, queries: 0 });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
         setLoading(true);
-        // Stats fetch karne ke liye queries
         const { count: blogCount } = await supabase.from('blogs').select('*', { count: 'exact', head: true });
         const { count: pkgCount } = await supabase.from('packages').select('*', { count: 'exact', head: true });
         const { count: offerCount } = await supabase.from('offers').select('*', { count: 'exact', head: true });
+        // Queries count fetch kiya
+        const { count: queryCount } = await supabase.from('inquiries').select('*', { count: 'exact', head: true });
         
         setStats({
           blogs: blogCount || 0,
           packages: pkgCount || 0,
-          offers: offerCount || 0
+          offers: offerCount || 0,
+          queries: queryCount || 0 
         });
       } catch (err) {
         console.error("Error fetching stats:", err);
@@ -41,21 +46,21 @@ const Dashboard = () => {
     fetchStats();
   }, []);
 
-  // --- LOGOUT LOGIC ---
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) {
       alert("Error logging out: " + error.message);
     } else {
-      // Session clear hone ke baad login par bhej dega
       navigate('/admin/login', { replace: true });
     }
   };
 
+  // menuItems mein naya Queries ka card add kiya
   const menuItems = [
     { label: 'Blogs', count: stats.blogs, icon: <FileText size={24} />, color: 'bg-blue-500', link: '/admin/manage-blogs' },
     { label: 'Tour Packages', count: stats.packages, icon: <Package size={24} />, color: 'bg-orange-500', link: '/admin/manage-packages' },
     { label: 'Special Offers', count: stats.offers, icon: <Tag size={24} />, color: 'bg-emerald-500', link: '/admin/manage-offers' },
+    { label: 'Customer Queries', count: stats.queries, icon: <MessageSquare size={24} />, color: 'bg-purple-500', link: '/admin/view-queries' },
   ];
 
   return (
@@ -87,9 +92,15 @@ const Dashboard = () => {
               {item.icon} {item.label}
             </button>
           ))}
+
+          <button 
+            onClick={() => navigate('/admin/media')} 
+            className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/10 rounded-2xl font-medium text-slate-400 hover:text-white transition-all"
+          >
+            <ImageIcon size={20} /> Media Library
+          </button>
         </nav>
 
-        {/* --- SIGN OUT BUTTON --- */}
         <button 
           onClick={handleLogout}
           className="mt-10 flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10 rounded-2xl font-bold transition-all border border-transparent hover:border-red-500/20"
@@ -102,7 +113,7 @@ const Dashboard = () => {
       <div className="flex-1 p-6 md:p-12 overflow-y-auto">
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4">
           <div>
-            <h1 className="text-4xl font-black text-slate-800 tracking-tight">Raj Thakur's Dashboard</h1>
+            <h1 className="text-4xl font-black text-slate-800 tracking-tight">Vijay Thakur's Dashboard</h1>
             <p className="text-slate-500 font-medium mt-1">Manage your Himachal travel agency and blogs.</p>
           </div>
           <button 
@@ -119,7 +130,7 @@ const Dashboard = () => {
             <Loader2 className="animate-spin text-indigo-600" size={40} />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {menuItems.map((item) => (
               <div 
                 key={item.label}

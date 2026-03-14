@@ -34,7 +34,7 @@ const Login = () => {
             <Lock className="text-[#4F46E5]" size={32} />
           </div>
           <h2 className="text-3xl font-black text-slate-800">Admin Login</h2>
-          <p className="text-slate-500 font-medium mt-2">Enter your credentials to manage Raj Thakur's Blog</p>
+          <p className="text-slate-500 font-medium mt-2">Enter your credentials to manage Vijay Thakur's Blog</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-6">

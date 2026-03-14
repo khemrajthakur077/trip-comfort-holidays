@@ -6,6 +6,8 @@ import ManagePackages from './pages/ManagePackages';
 import Dashboard from './pages/Dashboard';
 import ManageOffers from './pages/ManageOffers';
 import ManageBlogs from './pages/ManageBlogs';
+import MediaManager from './pages/MediaManager';
+import InquiryQueries from './pages/InquiryQueries';
 
 import ScrollToTop from './components/ScrollToTop'
 import Header from './components/header'
@@ -127,6 +129,8 @@ function App() {
         <Route path="/admin/manage-packages" element={<ProtectedRoute><ManagePackages /></ProtectedRoute>} />
         <Route path="/admin/manage-offers" element={<ProtectedRoute><ManageOffers /></ProtectedRoute>} />
         <Route path="/admin/manage-blogs" element={<ProtectedRoute><ManageBlogs /></ProtectedRoute>} />
+        <Route path="/admin/media" element={<ProtectedRoute><MediaManager /></ProtectedRoute>} />
+        <Route  path="/admin/view-queries"  element={<ProtectedRoute><InquiryQueries /></ProtectedRoute>} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
