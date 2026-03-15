@@ -45,9 +45,9 @@ const Home = () => {
   </span>
 
   {/* Main Heading */}
-  <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 text-center tracking-tight">
-    Explore <span className="text-[#4F46E5]">Holiday</span> Themes
-  </h1>
+ <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 text-center tracking-tight">
+  Trip Comfort <span className="text-[#4F46E5]">Holidays</span> Zone
+</h1>
 
   {/* Decorative Divider */}
   <div className="flex items-center gap-1.5 pt-2">
@@ -81,9 +81,9 @@ const Home = () => {
   </span>
 
   {/* Main Heading */}
-  <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 text-center tracking-tight leading-tight">
-    India's <span className="text-[#4F46E5]">Top Holiday</span> Destinations
-  </h1>
+ <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 text-center tracking-tight leading-tight">
+  Popular <span className="text-[#4F46E5]">Holiday destinations</span> in India
+</h1>
 
   {/* Underline Decoration */}
   <div className="flex items-center gap-2 pt-1">
