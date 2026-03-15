@@ -39,42 +39,49 @@ const PaymentPage = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-5">
             
-            {/* Left Side: Instructions */}
-            <div className="md:col-span-2 bg-slate-900 p-10 text-white space-y-8">
-              <div className="space-y-4">
-                <h3 className="text-2xl font-black flex items-center gap-3">
-                  <ShieldCheck className="text-[#4F46E5]" size={28} /> 100% Safe
-                </h3>
-                <p className="text-slate-400 text-sm leading-relaxed">
-                  Your payments are processed manually via Bank Transfer or UPI to ensure zero extra processing fees.
-                </p>
-              </div>
+           {/* Left Side: Instructions */}
+<div className="md:col-span-2 bg-slate-900 p-10 text-white space-y-8">
+  <div className="space-y-4">
+    <h3 className="text-2xl font-black flex items-center gap-3">
+      <ShieldCheck className="text-[#4F46E5]" size={28} /> 100% Safe
+    </h3>
+    <p className="text-slate-400 text-sm leading-relaxed">
+      Your payments are processed manually via Bank Transfer or UPI to ensure zero extra processing fees.
+    </p>
+  </div>
 
-              <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="w-8 h-8 bg-[#4F46E5] rounded-full flex items-center justify-center font-bold text-sm shrink-0">1</div>
-                  <p className="text-sm text-slate-300">Scan QR Code or copy bank details.</p>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-8 h-8 bg-[#4F46E5] rounded-full flex items-center justify-center font-bold text-sm shrink-0">2</div>
-                  <p className="text-sm text-slate-300">Make payment via any UPI app or Bank app.</p>
-                </div>
-                <div className="flex gap-4">
-                  <div className="w-8 h-8 bg-[#4F46E5] rounded-full flex items-center justify-center font-bold text-sm shrink-0">3</div>
-                  <p className="text-sm text-slate-300">Share screenshot on WhatsApp.</p>
-                </div>
-              </div>
+  <div className="space-y-6">
+    <div className="flex gap-4">
+      <div className="w-8 h-8 bg-[#4F46E5] rounded-full flex items-center justify-center font-bold text-sm shrink-0">1</div>
+      <p className="text-sm text-slate-300">Scan QR Code or copy bank details.</p>
+    </div>
+    <div className="flex gap-4">
+      <div className="w-8 h-8 bg-[#4F46E5] rounded-full flex items-center justify-center font-bold text-sm shrink-0">2</div>
+      <p className="text-sm text-slate-300">Make payment via any UPI app or Bank app.</p>
+    </div>
+    <div className="flex gap-4">
+      <div className="w-8 h-8 bg-[#4F46E5] rounded-full flex items-center justify-center font-bold text-sm shrink-0">3</div>
+      <p className="text-sm text-slate-300">Share screenshot on WhatsApp.</p>
+    </div>
+  </div>
 
-              <div className="pt-10">
-                <div className="p-4 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl flex items-start gap-3">
-                  <Info size={20} className="text-[#4F46E5] shrink-0" />
-                  <p className="text-[12px] text-slate-400 italic">
-                    Mention your "Name" in the remarks for faster verification.
-                  </p>
-                </div>
-              </div>
-            </div>
+  {/* NEW: Professional Contact Support Line */}
+  <div className="pt-6 border-t border-slate-800">
+    <p className="text-xs text-slate-400 leading-relaxed">
+      In case of any payment-related issues, please contact our support at: 
+      <span className="block text-indigo-400 font-bold mt-1 text-sm">+91 80916-55570</span>
+    </p>
+  </div>
 
+  <div className="pt-4">
+    <div className="p-4 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl flex items-start gap-3">
+      <Info size={20} className="text-[#4F46E5] shrink-0" />
+      <p className="text-[12px] text-slate-400 italic">
+        Mention your "Name" in the remarks for faster verification.
+      </p>
+    </div>
+  </div>
+</div>
             {/* Right Side: Scanner & Bank Details */}
             <div className="md:col-span-3 p-8 md:p-12 space-y-10">
               

@@ -1,6 +1,6 @@
 import './App.css'
-import React, { useEffect, useState } from 'react'; // React hooks add kiye
-import { supabase } from './supabaseClient'; // Supabase import zaroori hai
+import React, { useEffect, useState } from 'react';
+import { supabase } from './supabaseClient';
 import Login from './pages/Login'
 import ManagePackages from './pages/ManagePackages';
 import Dashboard from './pages/Dashboard';
@@ -9,6 +9,10 @@ import ManageBlogs from './pages/ManageBlogs';
 import MediaManager from './pages/MediaManager';
 import InquiryQueries from './pages/InquiryQueries';
 import AddGuestReview from './pages/AddGuestReview';
+import B2BRequests from './pages/InquiryB2B';
+import TripInquiryQueries from './pages/TripInquiryQueries';
+
+import SocialSidebar from './components/SocialSidebar';
 
 import ScrollToTop from './components/ScrollToTop'
 import Header from './components/header'
@@ -17,9 +21,9 @@ import Blogs from './pages/blogs'
 import Offers from './pages/offers'
 import Home from './pages/home'
 import './index.css'
-import { Routes, Route, useLocation, Navigate } from 'react-router-dom' // Navigate add kiya
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 
-// ... baaki saare imports same hain ...
+// Packages Imports
 import Honeymoon from './packages/honeymoon'
 import Family from "./packages/family";
 import Adventure from "./packages/adventure";
@@ -46,10 +50,9 @@ import JoinUsPage from './pages/joinUs';
 import NotFound from './pages/notFound';
 
 const ProtectedRoute = ({ children }) => {
-  const [session, setSession] = useState(undefined); // undefined rakhein taaki loading pata chale
+  const [session, setSession] = useState(undefined);
 
   useEffect(() => {
-    // Session check karne ka sabse solid tarika
     const getInitialSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       setSession(session);
@@ -64,7 +67,6 @@ const ProtectedRoute = ({ children }) => {
     return () => subscription.unsubscribe();
   }, []);
 
-  // Jab tak session check ho raha hai, tab tak kuch mat dikhao (Screen Blank rakho)
   if (session === undefined) {
     return (
       <div className="h-screen flex items-center justify-center bg-slate-900">
@@ -79,14 +81,19 @@ const ProtectedRoute = ({ children }) => {
 
   return children;
 };
+
 function App() {
   const location = useLocation();
-  const isAdminPage = location.pathname.startsWith('/admin');
+  // Sirf ek variable jo check karega ki page admin ka hai ya nahi
+  const isAdminPath = location.pathname.startsWith('/admin');
 
   return (
     <>
       <ScrollToTop />
-      {!isAdminPage && <Header />}
+      
+      {/* Header aur SocialSidebar sirf tab dikhenge jab path admin wala NAHI hoga */}
+      {!isAdminPath && <Header />}
+      {!isAdminPath && <SocialSidebar />}
 
       <Routes>
         <Route path='/' element={<Home />} />
@@ -131,15 +138,18 @@ function App() {
         <Route path="/admin/manage-offers" element={<ProtectedRoute><ManageOffers /></ProtectedRoute>} />
         <Route path="/admin/manage-blogs" element={<ProtectedRoute><ManageBlogs /></ProtectedRoute>} />
         <Route path="/admin/media" element={<ProtectedRoute><MediaManager /></ProtectedRoute>} />
-        <Route  path="/admin/view-queries"  element={<ProtectedRoute><InquiryQueries /></ProtectedRoute>} />
+        <Route path="/admin/view-queries" element={<ProtectedRoute><InquiryQueries /></ProtectedRoute>} />
         <Route path="/admin/add-gallery" element={<ProtectedRoute><AddGuestReview /></ProtectedRoute>} />
+        <Route path="/admin/b2b-requests" element={<ProtectedRoute><B2BRequests /></ProtectedRoute>} />
+        <Route path="/admin/Tripview-queries" element={<ProtectedRoute><TripInquiryQueries /></ProtectedRoute>} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-      {!isAdminPage && <Footer />}
+      {/* Footer bhi admin page par hide ho jayega */}
+      {!isAdminPath && <Footer />}
     </>
   )
 }
 
-export default App
+export default App;

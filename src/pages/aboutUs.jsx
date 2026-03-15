@@ -78,7 +78,7 @@ const AboutPage = () => {
               Himalayan Heart & <span className="text-[#4F46E5]">Global Reach.</span>
             </h2>
             <p className="text-slate-600 text-lg leading-relaxed font-medium">
-              Based in **Shimla**, we specialize in seamless group tours, corporate getaways, and cultural adventures. We make your travels relaxing, memorable, and tailored just for you.
+              Based in **Sunder Nagar, Mandi, Himachal Pradesh**, we specialize in seamless group tours, corporate getaways, and cultural adventures. We make your travels relaxing, memorable, and tailored just for you.
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -109,7 +109,7 @@ const AboutPage = () => {
             <div className="bg-white rounded-[3rem] p-8 md:p-16 shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-12">
                 <div className="flex-1 space-y-6">
                     <span className="text-[#4F46E5] font-black uppercase tracking-widest text-sm">Visit Our Office</span>
-                    <h3 className="text-4xl font-black text-slate-900">Mandi Head Office</h3>
+                    <h3 className="text-4xl font-black text-slate-900">Sunder Nagar Head Office</h3>
                     <p className="text-xl text-slate-600 leading-relaxed font-medium">
                         House No. 203/5, Bharoh, Near Mini Secretariat <br/>
                         Sundernagar, Mandi, Himachal Pradesh 175018

@@ -12,13 +12,23 @@ import {
   Loader2,
   Image as ImageIcon,
   MessageSquare,
-  Users // Guest Gallery के लिए नया आइकॉन
+  Users,
+  Handshake,
+  PlaneTakeoff // Naya icon Destination ke liye
 } from 'lucide-react';
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  // stats में gallery add किया
-  const [stats, setStats] = useState({ blogs: 0, packages: 0, offers: 0, queries: 0, gallery: 0 });
+  // stats mein 'destinationQueries' add kiya
+  const [stats, setStats] = useState({ 
+    blogs: 0, 
+    packages: 0, 
+    offers: 0, 
+    queries: 0, 
+    gallery: 0, 
+    b2b: 0,
+    destinationQueries: 0 // Naya state
+  });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -29,15 +39,19 @@ const Dashboard = () => {
         const { count: pkgCount } = await supabase.from('packages').select('*', { count: 'exact', head: true });
         const { count: offerCount } = await supabase.from('offers').select('*', { count: 'exact', head: true });
         const { count: queryCount } = await supabase.from('inquiries').select('*', { count: 'exact', head: true });
-        // Guest Gallery count fetch kiya
         const { count: galleryCount } = await supabase.from('guest_gallery').select('*', { count: 'exact', head: true });
+        const { count: b2bCount } = await supabase.from('b2b_partners').select('*', { count: 'exact', head: true });
+        // Nayi table 'trip_queries' ka count fetch kiya
+        const { count: destCount } = await supabase.from('trip_queries').select('*', { count: 'exact', head: true });
         
         setStats({
           blogs: blogCount || 0,
           packages: pkgCount || 0,
           offers: offerCount || 0,
           queries: queryCount || 0,
-          gallery: galleryCount || 0 
+          gallery: galleryCount || 0,
+          b2b: b2bCount || 0,
+          destinationQueries: destCount || 0 // Set kiya
         });
       } catch (err) {
         console.error("Error fetching stats:", err);
@@ -62,8 +76,11 @@ const Dashboard = () => {
     { label: 'Blogs', count: stats.blogs, icon: <FileText size={24} />, color: 'bg-blue-500', link: '/admin/manage-blogs' },
     { label: 'Tour Packages', count: stats.packages, icon: <Package size={24} />, color: 'bg-orange-500', link: '/admin/manage-packages' },
     { label: 'Special Offers', count: stats.offers, icon: <Tag size={24} />, color: 'bg-emerald-500', link: '/admin/manage-offers' },
-    { label: 'Guest Gallery', count: stats.gallery, icon: <Users size={24} />, color: 'bg-indigo-500', link: '/admin/add-gallery' }, // Naya Card
-    { label: 'Customer Queries', count: stats.queries, icon: <MessageSquare size={24} />, color: 'bg-purple-500', link: '/admin/view-queries' },
+    { label: 'Guest Gallery', count: stats.gallery, icon: <Users size={24} />, color: 'bg-indigo-500', link: '/admin/add-gallery' },
+    { label: 'B2B Partners', count: stats.b2b, icon: <Handshake size={24} />, color: 'bg-rose-500', link: '/admin/b2b-requests' },
+    // Naya card: Destination Queries
+    { label: 'Trip Inquiries', count: stats.destinationQueries, icon: <PlaneTakeoff size={24} />, color: 'bg-cyan-500', link: '/admin/Tripview-queries' },
+    { label: 'Contact Messages', count: stats.queries, icon: <MessageSquare size={24} />, color: 'bg-purple-500', link: '/admin/view-queries' },
   ];
 
   return (
@@ -78,7 +95,7 @@ const Dashboard = () => {
           <span className="font-black text-xl tracking-tight">Trip Admin</span>
         </div>
 
-        <nav className="flex-1 space-y-3">
+        <nav className="flex-1 space-y-3 overflow-y-auto">
           <button 
             onClick={() => navigate('/admin/dashboard')} 
             className="w-full flex items-center gap-3 px-4 py-3 bg-[#4F46E5] rounded-2xl font-bold shadow-lg shadow-indigo-900/20 transition-all"
@@ -133,7 +150,7 @@ const Dashboard = () => {
             <Loader2 className="animate-spin text-indigo-600" size={40} />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"> {/* Responsive grid adjust किया */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"> {/* Responsive grid adjust kiya */}
             {menuItems.map((item) => (
               <div 
                 key={item.label}
@@ -141,10 +158,10 @@ const Dashboard = () => {
                 className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all cursor-pointer group"
               >
                 <div className="flex justify-between items-start mb-4">
-                  <div className={`${item.color} p-3 rounded-xl text-white shadow-lg shadow-${item.color.split('-')[1]}-200`}>
+                  <div className={`${item.color} p-3 rounded-xl text-white shadow-lg shadow-slate-200`}>
                     {item.icon}
                   </div>
-                  <span className="text-3xl font-black text-slate-800">{item.count}</span>
+                  <span className="text-2xl font-black text-slate-800">{item.count}</span>
                 </div>
                 <h3 className="text-slate-400 font-black uppercase text-[10px] tracking-widest group-hover:text-[#4F46E5] transition-colors">
                   {item.label}
@@ -160,7 +177,7 @@ const Dashboard = () => {
           <div className="relative z-10">
             <h2 className="text-2xl font-black mb-2">Admin Tip! 💡</h2>
             <p className="text-indigo-100 font-medium max-w-xl">
-              Naye tour packages add karte waqt <b>'Old Price'</b> zaroor daalein, isse website par 'Discount' tag automatic show hota hai jo customers ko attract karta hai.
+              Naye B2B partners aur <b>Trip Inquiries</b> ko check karte rahein. Customers ko fast reply dene se booking ke chances badh jaate hain.
             </p>
           </div>
         </div>

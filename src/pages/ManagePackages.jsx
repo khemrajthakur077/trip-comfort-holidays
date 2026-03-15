@@ -8,7 +8,6 @@ const ManagePackages = () => {
   const [fetching, setFetching] = useState(true);
   const [editingId, setEditingId] = useState(null);
 
-  // Ab initialForm mein category empty string hai taaki aap type kar sakein
   const initialForm = {
     title: '', subtitle: '', destination: '', price: '', old_price: '', 
     duration: '', from_location: '', to_location: '', category: '',
@@ -35,7 +34,13 @@ const ManagePackages = () => {
     updated[index] = val;
     setter(updated);
   };
-  const handleRemoveRow = (setter, state, index) => setter(state.filter((_, i) => i !== index));
+  const handleRemoveRow = (setter, state, index) => {
+    if (state.length > 1) {
+      setter(state.filter((_, i) => i !== index));
+    } else {
+      setter(['']); // Kam se kam ek khali row rakhein
+    }
+  };
 
   const handleDelete = async (id) => {
     if(!window.confirm("Are you sure you want to delete this package?")) return;
@@ -49,9 +54,11 @@ const ManagePackages = () => {
     }
   };
 
+  // FIXED: startEdit function ab data ko sahi se parse karega
   const startEdit = (pkg) => {
     if (!pkg) return;
     setEditingId(pkg.id);
+    
     setFormData({
       title: pkg.title || '',
       subtitle: pkg.subtitle || '',
@@ -66,9 +73,26 @@ const ManagePackages = () => {
       meal: pkg.meal || '',
       image_url: pkg.image_url || ''
     });
-    setItinerary(Array.isArray(pkg.itinerary) ? pkg.itinerary : [{ day: 1, title: '', desc: '' }]);
-    setInclusions(Array.isArray(pkg.inclusions) ? pkg.inclusions : ['']);
-    setExclusions(Array.isArray(pkg.exclusions) ? pkg.exclusions : ['']);
+
+    // Itinerary Fix
+    setItinerary(Array.isArray(pkg.itinerary) && pkg.itinerary.length > 0 
+      ? pkg.itinerary 
+      : [{ day: 1, title: '', desc: '' }]);
+
+    // Inclusions Fix: Agar data string hai toh use array mein convert karega
+    let inc = pkg.inclusions;
+    if (typeof inc === 'string') {
+        try { inc = JSON.parse(inc); } catch { inc = [inc]; }
+    }
+    setInclusions(Array.isArray(inc) && inc.length > 0 ? inc : ['']);
+
+    // Exclusions Fix
+    let exc = pkg.exclusions;
+    if (typeof exc === 'string') {
+        try { exc = JSON.parse(exc); } catch { exc = [exc]; }
+    }
+    setExclusions(Array.isArray(exc) && exc.length > 0 ? exc : ['']);
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -84,13 +108,18 @@ const ManagePackages = () => {
     e.preventDefault();
     setLoading(true);
 
+    // Filter out empty rows before saving
+    const finalInclusions = inclusions.filter(i => i && i.trim() !== '');
+    const finalExclusions = exclusions.filter(e => e && e.trim() !== '');
+    const finalItinerary = itinerary.filter(it => it.title.trim() !== '' || it.desc.trim() !== '');
+
     const cleanData = {
       ...formData,
       price: Number(formData.price),
       old_price: formData.old_price ? Number(formData.old_price) : null,
-      itinerary,
-      inclusions: inclusions.filter(i => i && i.trim() !== ''),
-      exclusions: exclusions.filter(e => e && e.trim() !== '')
+      itinerary: finalItinerary,
+      inclusions: finalInclusions,
+      exclusions: finalExclusions
     };
 
     try {
@@ -99,11 +128,11 @@ const ManagePackages = () => {
         : await supabase.from('packages').insert([cleanData]);
 
       if (error) throw error;
-      alert(editingId ? "Package Updated!" : "Package Published!");
+      alert(editingId ? "Package Updated Successfully!" : "Package Published Successfully!");
       resetForm();
       fetchPackages();
     } catch (err) {
-      alert("Error: " + err.message);
+      alert("Database Error: " + err.message);
     } finally {
       setLoading(false);
     }
@@ -132,24 +161,17 @@ const ManagePackages = () => {
                 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-500 ml-1">Category (Type here)</label>
-                    {/* Yahan Select ki jagah Input kar diya gaya hai */}
-                    <input 
-                      type="text" 
-                      placeholder="e.g. Adventure" 
-                      className="w-full p-3 bg-slate-50 rounded-xl outline-none focus:ring-2 ring-indigo-500" 
-                      value={formData.category} 
-                      onChange={e => setFormData({...formData, category: e.target.value})} 
-                    />
+                    <label className="text-xs font-bold text-slate-500 ml-1">Category</label>
+                    <input type="text" placeholder="e.g. Adventure" className="w-full p-3 bg-slate-50 rounded-xl outline-none focus:ring-2 ring-indigo-500" value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} />
                   </div>
                   <div className="space-y-1">
                     <label className="text-xs font-bold text-slate-500 ml-1">Destination</label>
-                    <input type="text" placeholder="City/Country" className="w-full p-3 bg-slate-50 rounded-xl outline-none" value={formData.destination} onChange={e => setFormData({...formData, destination: e.target.value})} />
+                    <input type="text" placeholder="City/Country" className="w-full p-3 bg-slate-50 rounded-xl outline-none focus:ring-2 ring-indigo-500" value={formData.destination} onChange={e => setFormData({...formData, destination: e.target.value})} />
                   </div>
                 </div>
               </div>
 
-              {/* 2. Logistics & Amenities */}
+              {/* 2. Logistics */}
               <div className="space-y-4 pt-4">
                 <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest">2. Logistics & Details</h3>
                 <div className="grid grid-cols-3 gap-3">
@@ -178,12 +200,12 @@ const ManagePackages = () => {
                 </div>
               </div>
 
-              {/* 3. Pricing & Media */}
+              {/* 3. Pricing */}
               <div className="space-y-4 pt-4">
                 <h3 className="text-sm font-black text-slate-400 uppercase tracking-widest">3. Pricing & Images</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-500 ml-1 text-indigo-600">Current Price (₹)</label>
+                    <label className="text-xs font-bold text-indigo-600 ml-1">Current Price (₹)</label>
                     <input type="number" className="w-full p-3 bg-indigo-50/50 rounded-xl outline-none font-bold text-indigo-700" value={formData.price} onChange={e => setFormData({...formData, price: e.target.value})} required />
                   </div>
                   <div className="space-y-1">
@@ -197,12 +219,12 @@ const ManagePackages = () => {
                 </div>
               </div>
 
-              {/* 4. Dynamic Sections */}
+              {/* 4. Sections */}
               <SectionWrapper title="Itinerary" icon={<Calendar size={16}/>} onAdd={() => setItinerary([...itinerary, { day: itinerary.length + 1, title: '', desc: '' }])}>
                 {itinerary.map((day, i) => (
                   <div key={i} className="p-4 bg-slate-50 rounded-2xl space-y-2 border border-slate-100 relative group">
                     <button type="button" onClick={() => handleRemoveRow(setItinerary, itinerary, i)} className="absolute right-3 top-3 text-slate-300 hover:text-red-500 transition-colors"><X size={16}/></button>
-                    <span className="text-[10px] font-black text-indigo-400 uppercase">Day {day.day}</span>
+                    <span className="text-[10px] font-black text-indigo-400 uppercase">Day {i + 1}</span>
                     <input type="text" placeholder="Title for the day" className="w-full p-2 text-sm rounded-lg border-none" value={day.title} onChange={e => { const upd = [...itinerary]; upd[i].title = e.target.value; setItinerary(upd); }} />
                     <textarea placeholder="Description..." className="w-full p-2 text-sm rounded-lg border-none h-20 resize-none" value={day.desc} onChange={e => { const upd = [...itinerary]; upd[i].desc = e.target.value; setItinerary(upd); }} />
                   </div>

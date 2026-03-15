@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
 import { Users, BadgePercent, ShieldCheck, Globe, Handshake, Send, CheckCircle2, Briefcase } from 'lucide-react';
+import { supabase } from '../supabaseClient'; // Path apne hisab se check kar lena
 
 const JoinUsPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  
+  // Form State
+  const [formData, setFormData] = useState({
+    agency_name: '',
+    owner_name: '',
+    email: '',
+    phone: '',
+    location: '',
+    about: ''
+  });
 
   const benefits = [
     {
@@ -28,19 +39,45 @@ const JoinUsPage = () => {
     }
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    try {
+      const { error } = await supabase
+        .from('b2b_partners') // Table ka naam jo humne banaya
+        .insert([
+          { 
+            agency_name: formData.agency_name,
+            owner_name: formData.owner_name,
+            email: formData.email,
+            phone: formData.phone,
+            location: formData.location,
+            about: formData.about
+          }
+        ]);
+
+      if (error) throw error;
+
       setIsSent(true);
-    }, 1500);
+      // Form reset
+      setFormData({ agency_name: '', owner_name: '', email: '', phone: '', location: '', about: '' });
+      
+    } catch (error) {
+      alert("Error submitting application: " + error.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 pb-20">
       
-      {/* --- HERO SECTION --- */}
+      {/* --- HERO SECTION (No Change) --- */}
       <div className="bg-slate-900 pt-20 pb-32 px-4 text-center relative overflow-hidden">
         <div className="absolute top-0 left-0 w-96 h-96 bg-[#4F46E5]/20 rounded-full -ml-48 -mt-48 blur-3xl"></div>
         <div className="max-w-4xl mx-auto relative z-10 space-y-6">
@@ -57,11 +94,10 @@ const JoinUsPage = () => {
         </div>
       </div>
 
-      {/* --- CONTENT SECTION --- */}
       <div className="max-w-7xl mx-auto px-4 -mt-16 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
-          {/* LEFT: Benefits (Sticky on Desktop) */}
+          {/* LEFT: Benefits (No Change) */}
           <div className="lg:col-span-1 space-y-6">
             <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-slate-100">
               <h2 className="text-2xl font-black mb-8 flex items-center gap-3">
@@ -112,33 +148,33 @@ const JoinUsPage = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-slate-500 uppercase ml-1 tracking-widest">Agency Name</label>
-                    <input required type="text" placeholder="e.g. Dream Travels" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:border-[#4F46E5] focus:bg-white outline-none transition-all font-medium" />
+                    <input name="agency_name" value={formData.agency_name} onChange={handleChange} required type="text" placeholder="e.g. Dream Travels" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:border-[#4F46E5] focus:bg-white outline-none transition-all font-medium" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-slate-500 uppercase ml-1 tracking-widest">Owner Name</label>
-                    <input required type="text" placeholder="Full Name" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:border-[#4F46E5] focus:bg-white outline-none transition-all font-medium" />
+                    <input name="owner_name" value={formData.owner_name} onChange={handleChange} required type="text" placeholder="Full Name" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:border-[#4F46E5] focus:bg-white outline-none transition-all font-medium" />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-slate-500 uppercase ml-1 tracking-widest">Email Address</label>
-                    <input required type="email" placeholder="agency@mail.com" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:border-[#4F46E5] focus:bg-white outline-none transition-all font-medium" />
+                    <input name="email" value={formData.email} onChange={handleChange} required type="email" placeholder="agency@mail.com" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:border-[#4F46E5] focus:bg-white outline-none transition-all font-medium" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-slate-500 uppercase ml-1 tracking-widest">Phone Number</label>
-                    <input required type="tel" placeholder="+91 00000-00000" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:border-[#4F46E5] focus:bg-white outline-none transition-all font-medium" />
+                    <input name="phone" value={formData.phone} onChange={handleChange} required type="tel" placeholder="+91 00000-00000" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:border-[#4F46E5] focus:bg-white outline-none transition-all font-medium" />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-xs font-bold text-slate-500 uppercase ml-1 tracking-widest">Office City / State</label>
-                  <input required type="text" placeholder="e.g. Chandigarh, Punjab" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:border-[#4F46E5] focus:bg-white outline-none transition-all font-medium" />
+                  <input name="location" value={formData.location} onChange={handleChange} required type="text" placeholder="e.g. Chandigarh, Punjab" className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:border-[#4F46E5] focus:bg-white outline-none transition-all font-medium" />
                 </div>
 
                 <div className="space-y-2">
                   <label className="text-xs font-bold text-slate-500 uppercase ml-1 tracking-widest">About Your Agency</label>
-                  <textarea rows="3" placeholder="Number of years in business, main client type, etc..." className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:border-[#4F46E5] focus:bg-white outline-none transition-all font-medium resize-none"></textarea>
+                  <textarea name="about" value={formData.about} onChange={handleChange} rows="3" placeholder="Number of years in business..." className="w-full bg-slate-50 border-2 border-slate-100 rounded-2xl px-6 py-4 focus:border-[#4F46E5] focus:bg-white outline-none transition-all font-medium resize-none"></textarea>
                 </div>
 
                 <button 

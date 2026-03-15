@@ -1,6 +1,7 @@
 
 import DestinationCard from "../components/DestinationCard";
 import PackageCard from "../components/PackageCard";
+import TripQueryForm from '../components/TripQueryForm';
 
 import { Link } from "react-router-dom";
 
@@ -34,8 +35,21 @@ const Home = () => {
 
       {/* HERO SECTION */}
       <section className="w-auto h-auto">
-        <img src={HeroImg} alt="travel" className="w-auto h-auto object-cover"/>
+        <a 
+    href="https://wa.me/918091655570?text=Hello%20Trip%20Comfort%20Holidays!%20I%20saw%20this%20on%20your%20website%20and%20want%20to%20know%20more." 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="block cursor-pointer hover:opacity-95 transition-opacity"
+  >
+    <img 
+      src={HeroImg} 
+      alt="travel" 
+      className="w-auto h-auto object-cover"
+    />
+  </a>
       </section>
+
+      <TripQueryForm/>
 
       {/* HOLIDAY THEMES */}
       <div className="flex flex-col items-center justify-center space-y-2 mb-10 mt-16 px-4">
@@ -65,11 +79,11 @@ const Home = () => {
       <div className="flex flex-wrap items-center gap-5 justify-center">
 
         <Link to="/honeymoon">
-          <DestinationCard img={Honeymoon} name="Honeymoon"/>
+          <DestinationCard img={Honeymoon} name="HONEYMOON X LOVE"/>
         </Link>
 
-        <Link to="/family"><DestinationCard img={Family} name="Family"/></Link>
-       <Link to="/adventure"><DestinationCard img={Adventure} name="Adventure"/></Link> 
+        <Link to="/family"><DestinationCard img={Family} name="FAMILY TRIPS"/></Link>
+       <Link to="/adventure"><DestinationCard img={Adventure} name="EXPLORE MORE ADVENTURE"/></Link> 
 
       </div>
 
@@ -99,15 +113,15 @@ const Home = () => {
 
       <div className="flex flex-wrap items-center gap-5 justify-center">
 
-        <Link to="/himachal"><DestinationCard img={Himachal} name="Himachal Pradesh"/></Link>
-        <Link to="/kashmir"><DestinationCard img={Kashmir} name="Kashmir"/></Link>
-        <Link to="/kerala"><DestinationCard img={Kerala} name="Kerala"/></Link>
-        <Link to="/rajstan"><DestinationCard img={Rajstan} name="Rajstan"/></Link>
-        <Link to="/sikkim"><DestinationCard img={Sikkim} name="Sikkim"/></Link>
-        <Link to="/uttarakhand"><DestinationCard img={Uttarakhand} name="Uttarakhand"/></Link>
-        <Link to="/spiti"><DestinationCard img={Spiti} name="Spiti"/></Link>
-        <Link to="/lehLadakh"><DestinationCard img={Leh} name="Leh-Ladakh"/></Link>
-        <Link to="/goldenTriangle"><DestinationCard img={GoldenTriangle} name="Golden Triangle"/></Link>
+        <Link to="/himachal"><DestinationCard img={Himachal} name="HIMACHAL PRADESH"/></Link>
+        <Link to="/kashmir"><DestinationCard img={Kashmir} name="KASHMIR"/></Link>
+        <Link to="/kerala"><DestinationCard img={Kerala} name="KERALA"/></Link>
+        <Link to="/rajstan"><DestinationCard img={Rajstan} name="RAJASTHAN"/></Link>
+        <Link to="/sikkim"><DestinationCard img={Sikkim} name="SIKKIM"/></Link>
+        <Link to="/uttarakhand"><DestinationCard img={Uttarakhand} name="UTTARAKHAND"/></Link>
+        <Link to="/spiti"><DestinationCard img={Spiti} name="SPITI"/></Link>
+        <Link to="/lehLadakh"><DestinationCard img={Leh} name="LEH-LADAKH"/></Link>
+        <Link to="/goldenTriangle"><DestinationCard img={GoldenTriangle} name="GOLDEN-TRIANGLE"/></Link>
 
       </div>
 
@@ -148,8 +162,8 @@ const Home = () => {
 
       <div className="flex flex-wrap items-center gap-5 justify-center">
 
-        <Link to="/singapore"><DestinationCard img={Singapore} name="Singapore"/></Link>
-        <Link to="/dubai"><DestinationCard img={Dubai} name="Dubai"/></Link>
+        <Link to="/singapore"><DestinationCard img={Singapore} name="SINGAPORE"/></Link>
+        <Link to="/dubai"><DestinationCard img={Dubai} name="DUBAI"/></Link>
 
       </div>
 
