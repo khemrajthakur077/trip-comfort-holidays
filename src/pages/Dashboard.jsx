@@ -11,13 +11,14 @@ import {
   TrendingUp,
   Loader2,
   Image as ImageIcon,
-  MessageSquare // Naya icon import kiya queries ke liye
+  MessageSquare,
+  Users // Guest Gallery के लिए नया आइकॉन
 } from 'lucide-react';
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  // stats mein queries add kiya
-  const [stats, setStats] = useState({ blogs: 0, packages: 0, offers: 0, queries: 0 });
+  // stats में gallery add किया
+  const [stats, setStats] = useState({ blogs: 0, packages: 0, offers: 0, queries: 0, gallery: 0 });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -27,14 +28,16 @@ const Dashboard = () => {
         const { count: blogCount } = await supabase.from('blogs').select('*', { count: 'exact', head: true });
         const { count: pkgCount } = await supabase.from('packages').select('*', { count: 'exact', head: true });
         const { count: offerCount } = await supabase.from('offers').select('*', { count: 'exact', head: true });
-        // Queries count fetch kiya
         const { count: queryCount } = await supabase.from('inquiries').select('*', { count: 'exact', head: true });
+        // Guest Gallery count fetch kiya
+        const { count: galleryCount } = await supabase.from('guest_gallery').select('*', { count: 'exact', head: true });
         
         setStats({
           blogs: blogCount || 0,
           packages: pkgCount || 0,
           offers: offerCount || 0,
-          queries: queryCount || 0 
+          queries: queryCount || 0,
+          gallery: galleryCount || 0 
         });
       } catch (err) {
         console.error("Error fetching stats:", err);
@@ -55,11 +58,11 @@ const Dashboard = () => {
     }
   };
 
-  // menuItems mein naya Queries ka card add kiya
   const menuItems = [
     { label: 'Blogs', count: stats.blogs, icon: <FileText size={24} />, color: 'bg-blue-500', link: '/admin/manage-blogs' },
     { label: 'Tour Packages', count: stats.packages, icon: <Package size={24} />, color: 'bg-orange-500', link: '/admin/manage-packages' },
     { label: 'Special Offers', count: stats.offers, icon: <Tag size={24} />, color: 'bg-emerald-500', link: '/admin/manage-offers' },
+    { label: 'Guest Gallery', count: stats.gallery, icon: <Users size={24} />, color: 'bg-indigo-500', link: '/admin/add-gallery' }, // Naya Card
     { label: 'Customer Queries', count: stats.queries, icon: <MessageSquare size={24} />, color: 'bg-purple-500', link: '/admin/view-queries' },
   ];
 
@@ -130,20 +133,20 @@ const Dashboard = () => {
             <Loader2 className="animate-spin text-indigo-600" size={40} />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"> {/* Responsive grid adjust किया */}
             {menuItems.map((item) => (
               <div 
                 key={item.label}
                 onClick={() => navigate(item.link)}
-                className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all cursor-pointer group"
+                className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all cursor-pointer group"
               >
-                <div className="flex justify-between items-start mb-6">
-                  <div className={`${item.color} p-4 rounded-2xl text-white shadow-lg shadow-${item.color.split('-')[1]}-200`}>
+                <div className="flex justify-between items-start mb-4">
+                  <div className={`${item.color} p-3 rounded-xl text-white shadow-lg shadow-${item.color.split('-')[1]}-200`}>
                     {item.icon}
                   </div>
-                  <span className="text-4xl font-black text-slate-800">{item.count}</span>
+                  <span className="text-3xl font-black text-slate-800">{item.count}</span>
                 </div>
-                <h3 className="text-slate-400 font-black uppercase text-xs tracking-widest group-hover:text-[#4F46E5] transition-colors">
+                <h3 className="text-slate-400 font-black uppercase text-[10px] tracking-widest group-hover:text-[#4F46E5] transition-colors">
                   {item.label}
                 </h3>
               </div>

@@ -8,6 +8,7 @@ import ManageOffers from './pages/ManageOffers';
 import ManageBlogs from './pages/ManageBlogs';
 import MediaManager from './pages/MediaManager';
 import InquiryQueries from './pages/InquiryQueries';
+import AddGuestReview from './pages/AddGuestReview';
 
 import ScrollToTop from './components/ScrollToTop'
 import Header from './components/header'
@@ -131,6 +132,7 @@ function App() {
         <Route path="/admin/manage-blogs" element={<ProtectedRoute><ManageBlogs /></ProtectedRoute>} />
         <Route path="/admin/media" element={<ProtectedRoute><MediaManager /></ProtectedRoute>} />
         <Route  path="/admin/view-queries"  element={<ProtectedRoute><InquiryQueries /></ProtectedRoute>} />
+        <Route path="/admin/add-gallery" element={<ProtectedRoute><AddGuestReview /></ProtectedRoute>} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
