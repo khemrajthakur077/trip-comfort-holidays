@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://tripcomfortholidays.com/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://tripcomfortholidays.com/blogs</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tripcomfortholidays.com/offers</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://tripcomfortholidays.com/romantic</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tripcomfortholidays.com/family</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tripcomfortholidays.com/adventure</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://tripcomfortholidays.com/guestGallery</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://tripcomfortholidays.com/aboutUs</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tripcomfortholidays.com/contactUs</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://tripcomfortholidays.com/termsAndConditions</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://tripcomfortholidays.com/privacyPolicy</loc>
+    <priority>0.3</priority>
+  </url>
+
+    <loc>https://tripcomfortholidays.com/payNow</loc>
+    <priority>0.5</priority>
+  </url>
+</urlset>
