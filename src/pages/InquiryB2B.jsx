@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// Path check: if it is with components, it will be './supabaseClient'
 import { supabase } from '../supabaseClient'; 
 import { Mail, Phone, MapPin, MessageCircle, Trash2, User, AlertCircle } from 'lucide-react';
 
