@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // useEffect add kiya
 import { supabase } from '../supabaseClient'; 
 
-// Saare icons jo niche use ho rahe hain unhe yahan safely import kiya hai
+// Saare icons jo aapne niche use kiye unhe yahan import kiya hai
 import { 
   MapPin, 
   Loader2, 
@@ -9,11 +9,14 @@ import {
   Video, 
   User, 
   MessageSquare, 
-  Send 
+  Send,
+  Trash2,    // Missing icon add kiya
+  RefreshCw  // Missing icon add kiya
 } from 'lucide-react';
 
 const AddGuestReview = () => {
   const [loading, setLoading] = useState(false);
+  const [reviews, setReviews] = useState([]); // Reviews state add ki
   const [formData, setFormData] = useState({
     guest_name: '',
     location: '',
@@ -23,12 +26,48 @@ const AddGuestReview = () => {
     media_type: 'image'
   });
 
+  // 1. Reviews load karne ka function (Jo aapne niche call kiya hai)
+  const fetchReviews = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('guest_gallery')
+        .select('*')
+        .order('created_at', { ascending: false });
+      if (error) throw error;
+      setReviews(data || []);
+    } catch (error) {
+      console.error("Error fetching:", error.message);
+    }
+  };
+
+  // 2. Page load hote hi data dikhane ke liye
+  useEffect(() => {
+    fetchReviews();
+  }, []);
+
+  // 3. Delete function (Jo aapne niche button me lagaya hai)
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this?")) {
+      try {
+        const { error } = await supabase
+          .from('guest_gallery')
+          .delete()
+          .eq('id', id);
+
+        if (error) throw error;
+        alert("Deleted successfully!");
+        fetchReviews(); // List refresh karne ke liye
+      } catch (error) {
+        alert("Error: " + error.message);
+      }
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      // Yahan se 'data' hata diya hai taaki VS Code red line na dikhaye
       const { error } = await supabase
         .from('guest_gallery') 
         .insert([formData]);
@@ -46,6 +85,8 @@ const AddGuestReview = () => {
         media_url: '',
         media_type: 'image'
       });
+      
+      fetchReviews(); // Naya review add hote hi list update hogi
     } catch (error) {
       alert("Error: " + error.message);
     } finally {
@@ -174,6 +215,52 @@ const AddGuestReview = () => {
             {loading ? 'Adding...' : 'Post to Gallery'}
           </button>
         </form>
+
+        {/* Delete/List Section */}
+        <div className="space-y-6 mt-12">
+          <div className="flex justify-between items-center px-2">
+            <h2 className="text-2xl font-black flex items-center gap-2 text-slate-900">
+              <RefreshCw size={24} className="text-indigo-600" /> Manage Gallery
+            </h2>
+            <span className="bg-indigo-100 text-indigo-700 px-4 py-1 rounded-full text-sm font-bold">
+              {reviews.length} Total
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {reviews.map((item) => (
+              <div key={item.id} className="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm flex justify-between items-start group hover:border-red-100 transition-all">
+                <div className="flex gap-4">
+                  <div className="w-16 h-16 rounded-2xl bg-slate-100 overflow-hidden">
+                    {item.media_type === 'image' ? (
+                      <img src={item.media_url} alt="guest" className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-indigo-50 text-indigo-500"><Video size={20} /></div>
+                    )}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-lg text-slate-800">{item.guest_name}</h4>
+                    <p className="text-xs text-slate-400 flex items-center gap-1">
+                      <MapPin size={12} /> {item.location}
+                    </p>
+                    <span className="inline-block mt-2 px-2 py-0.5 bg-slate-100 text-[10px] font-bold rounded uppercase text-slate-600">
+                      {item.tag}
+                    </span>
+                  </div>
+                </div>
+                
+                <button 
+                  onClick={() => handleDelete(item.id)}
+                  className="p-3 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-2xl transition-all"
+                  title="Delete Review"
+                >
+                  <Trash2 size={20} />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </div>
   );
