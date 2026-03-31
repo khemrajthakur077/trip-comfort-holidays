@@ -11,6 +11,7 @@ import InquiryQueries from './pages/InquiryQueries';
 import AddGuestReview from './pages/AddGuestReview';
 import B2BRequests from './pages/InquiryB2B';
 import TripInquiryQueries from './pages/TripInquiryQueries';
+import BlogDetails from './pages/BlogDetails.jsx';
 
 import SocialSidebar from './components/SocialSidebar';
 
@@ -101,6 +102,7 @@ function App() {
         <Route path="/adventure" element={<Adventure />} />
         <Route path="/honeymoon" element={<Honeymoon />} />
         <Route path='/blogs' element={<Blogs />} />
+        <Route path="/blog/:id" element={<BlogDetails />} />
         <Route path='/offers' element={<Offers />} />
 
         {/* India Destinations */}
