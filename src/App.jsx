@@ -13,6 +13,7 @@ import B2BRequests from './pages/InquiryB2B';
 import TripInquiryQueries from './pages/TripInquiryQueries';
 import BlogDetails from './pages/BlogDetails.jsx';
 
+
 import SocialSidebar from './components/SocialSidebar';
 
 import ScrollToTop from './components/ScrollToTop'
@@ -147,7 +148,7 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
-
+     
       {/* Footer bhi admin page par hide ho jayega */}
       {!isAdminPath && <Footer />}
     </>

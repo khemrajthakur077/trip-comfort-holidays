@@ -2,6 +2,7 @@
 import DestinationCard from "../components/DestinationCard";
 import PackageCard from "../components/PackageCard";
 import TripQueryForm from '../components/TripQueryForm';
+import HomeReviews from '../components/HomeReviews';
 
 import { Link } from "react-router-dom";
 
@@ -167,7 +168,7 @@ const Home = () => {
 
       </div>
 
-     
+       <HomeReviews />
 
       {/* FOOTER HERO SECTION */}
       <section className="w-full mt-[50px]">
