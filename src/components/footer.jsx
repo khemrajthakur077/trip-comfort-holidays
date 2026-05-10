@@ -130,7 +130,7 @@ export default function Footer() {
           <div className="flex gap-6">
             <a href="https://www.facebook.com/share/14WtQSUqxS2/" target="_blank" rel="noreferrer" className="hover:text-[#4F46E5] cursor-pointer transition-colors">Facebook</a>
             <a href="https://www.instagram.com/tripcomfortholidays?igsh=N2FwNzByMGJ5Njlm" target="_blank" rel="noreferrer" className="hover:text-[#4F46E5] cursor-pointer transition-colors">Instagram</a>
-            <a href="https://www.youtube.com/@TripComfortHolidays" target="_blank" rel="noreferrer" className="hover:text-[#4F46E5] cursor-pointer transition-colors">U-Tube</a>
+            <a href="https://www.youtube.com/@TripComfortHolidays" target="_blank" rel="noreferrer" className="hover:text-[#4F46E5] cursor-pointer transition-colors">YouTube</a>
           </div>
         </div>
       </div>
