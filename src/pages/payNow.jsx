@@ -5,10 +5,10 @@ const PaymentPage = () => {
   const [copied, setCopied] = useState(false);
 
   const bankDetails = {
-    accountNumber: "1025104000052164",
-    bankName: "IDBI Bank",
-    holderName: "VIJAY THAKUR",
-    ifscCode: "IBKL0001025",
+    accountNumber: "32920100126",
+    bankName: "HPSC Bank",
+    holderName: "TRIP COMFORT HOLIDAYS",
+    ifscCode: "HPSC0000329",
     branch: "Sundernagar"
   };
 
@@ -97,7 +97,7 @@ const PaymentPage = () => {
                 <div className="flex flex-col md:flex-row items-center gap-8">
                   <div className="w-48 h-48 bg-white p-2 rounded-2xl shadow-md border border-slate-100 shrink-0">
                     <img 
-                      src="https://gcxwcbxsknxgknaiyfte.supabase.co/storage/v1/object/public/Travelpkgimages/1773566347385-tchScanner.jpeg" 
+                      src="https://gcxwcbxsknxgknaiyfte.supabase.co/storage/v1/object/public/Travelpkgimages/1779124189989-1000227924.jpg" 
                       alt="Payment Scanner" 
                       className="w-full h-full object-contain"
                     />
