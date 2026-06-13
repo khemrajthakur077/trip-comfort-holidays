@@ -1,6 +1,7 @@
 import './App.css'
 import React, { useEffect, useState } from 'react';
 import { supabase } from './supabaseClient';
+import { Analytics } from '@vercel/analytics/react';
 import Login from './pages/Login'
 import ManagePackages from './pages/ManagePackages';
 import Dashboard from './pages/Dashboard';
@@ -151,6 +152,7 @@ function App() {
      
       {/* Footer bhi admin page par hide ho jayega */}
       {!isAdminPath && <Footer />}
+      <Analytics />
     </>
   )
 }
